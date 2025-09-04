@@ -778,6 +778,7 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
       </nav>
     </div>
   <div class="content-area">
+    <div class="section-content" id="front-section">
       <!-- Om Mig -->
       <div class="section-content" id="ommig-section">
         <div class="om-mig-box">
@@ -1234,16 +1235,15 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
     }
     if (document.getElementById('skillChart')) drawRadarChart();
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuLinks = document.querySelectorAll('.menu a');
+    const sections = document.querySelectorAll('.section-content');
     menuLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        // Remove .active from all menu links
         menuLinks.forEach(l => l.classList.remove('active'));
-        // Add .active to the clicked link
         this.classList.add('active');
-        // Hide all sections
         sections.forEach(section => section.classList.remove('active'));
-        // Show the selected section
         const sectionId = this.getAttribute('data-section');
         const activeSection = document.getElementById(sectionId + '-section');
         if (activeSection) {
@@ -1251,8 +1251,7 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
         }
       });
     });
-
-    // Optional: Show the first section by default
+    // Show the first section by default
     if (menuLinks.length && sections.length) {
       const firstSectionId = menuLinks[0].getAttribute('data-section') + '-section';
       const firstSection = document.getElementById(firstSectionId);
