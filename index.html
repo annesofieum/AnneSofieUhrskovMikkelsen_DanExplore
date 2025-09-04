@@ -52,22 +52,18 @@
 .content-area {
   position: relative;
   z-index: 2;
-    }
+}
     .sidebar {
       position: fixed;
       top: 0; left: 0;
       height: 100vh;
       width: 340px;
       min-width: 210px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0 0 0 32px;
-      box-sizing: border-box;
-      z-index: 3;
-      border-right: none;
-      box-shadow: 0 2px 22px 0 #dbeada1a;
+     background: rgba(255,255,255,0.23);
+border-right: 2px solid var(--soft-green);
+backdrop-filter: blur(14px) saturate(120%);
+-webkit-backdrop-filter: blur(14px) saturate(120%);
+box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
     }
     .sidebar-header {
       display: flex;
@@ -83,7 +79,7 @@
     .name-title {
       font-size: 2.5rem;
       font-weight: 600;
-      color: var(--title-green);
+      --title-green: #294231;
       letter-spacing: 0.02em;
       line-height: 1.12;
       white-space: pre-line;
@@ -697,6 +693,8 @@
       .content-area {
         margin-left: 0;
         margin-top: 0;
+        <div class="section-content" id="front-section">
+</div>
       }
       .big-section-box,
       .om-mig-box,
@@ -765,7 +763,8 @@
   </style>
 </head>
 <body>
-  <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline></video>
+  <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline>
+  </video>
   <div class="split-layout">
     <div class="sidebar">
       <div class="sidebar-header">
@@ -1043,24 +1042,6 @@
     </div>
   </div>
   <script>
-    document.querySelectorAll('.menu a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.menu a').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        document.querySelectorAll('.section-content').forEach(sec => {
-          sec.classList.remove('active');
-          sec.style.opacity = 0;
-        });
-        if (this.dataset.section === "front") {
-          document.getElementById('frontimg').style.display = "block";
-        } else {
-          document.getElementById('frontimg').style.display = "none";
-          let sec = document.getElementById(this.dataset.section + '-section');
-          if(sec) {
-            sec.classList.add('active');
-            setTimeout(() => { sec.style.opacity = 1; }, 30);
-          }
         }
       });
     });
