@@ -3,1026 +3,1056 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anne Sofie Uhrskov Mikkelsen</title>
+  <meta name="description" content="Anne Sofie Uhrskov Mikkelsen - Erfaren koordinator og marketing specialist">
+  <title>Anne Sofie Uhrskov Mikkelsen - Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <style>
- :root {
-  --background: #e3eaf7;
-  --box-bg: #e3eaf7;
-  --primary: #3A8FE7;
-  --secondary: #EFD9B4;
-  --accent: #F5E8C5;
-  --card-bg: rgba(255,255,255,0.18);
-  --text-dark: #2C3E50;
-  --highlight: #B8FFF4;
-  --border-radius: 24px;
-  --glass-blur: blur(16px);
-  --soft-green: #d3e1be;
-  --accent-green: #294231;
-  --legend-dark: #294231;
-  --legend-light: #7e9c85;
-  --font-title: 'Playfair Display', serif;
-  --font-main: 'Playfair Display', serif;
-  --title-green: #294231;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: var(--box-bg);
-  font-family: var(--font-main);
-  color: var(--text-dark);
-  font-weight: 400;
-  min-height: 100vh;
-  box-sizing: border-box;
-  cursor: url('/compass-cursor.png') 16 16, auto;
-  overscroll-behavior: none;
-}
-/* Video BG */
-.video-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-  filter: brightness(0.6) blur(6px) saturate(140%);
-  background: #000;
-}
-.split-layout,
-.content-area {
-  position: relative;
-  z-index: 2;
-}
-.sidebar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 100vh;
-  width: 340px;
-  min-width: 210px;
-  background: rgba(255,255,255,0.23);
-  border-right: 2px solid var(--soft-green);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
-}
-.sidebar-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  height: 210px;
-  width: 100%;
-  position: relative;
-  margin-top: 40px;
-  margin-bottom: 34px;
-}
-.name-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.12;
-  white-space: pre-line;
-  font-family: var(--font-title);
-  width: 100%;
-  text-align: left;
-}
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-left: 1rem;
-  margin-top: 0;
-  padding: 0;
-  width: auto;
-  background: none;
-  box-shadow: none;
-}
-.menu a {
-  display: inline-block;
-  font-size: 1.11rem;
-  color: var(--title-green);
-  text-decoration: none;
-  padding: 0.19em 0.95em;
-  border-radius: 22px;
-  transition: background 0.16s, color 0.14s, transform 0.18s, box-shadow 0.15s;
-  cursor: pointer;
-  opacity: 0.7;
-  letter-spacing: 0.01em;
-  font-weight: 500;
-  background: none;
-  box-shadow: none;
-  margin: 0;
-  min-width: 0;
-}
-.menu a.active, .menu a:hover {
-  background: var(--soft-green);
-  color: var(--accent-green);
-  opacity: 1;
-  transform: translateX(7px) scale(1.07);
-  box-shadow: 0 2px 12px 0 #b6c7b433;
-  border-radius: 22px;
-}
-.menu a:active {
-  background: #def0de;
-  color: #1f3324;
-  transform: translateX(2px) scale(0.98);
-}
-.content-area {
-  flex: 1;
-  min-height: 100vh;
-  background: var(--box-bg);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  overflow: auto;
-  margin-left: 340px;
-}
-.front-image {
-  max-width: 100vw;
-  width: 100%;
-  height: 110vh;
-  min-height: 950px;
-  object-fit: cover;
-  display: block;
-  border-radius: 0;
-  box-shadow: 0 6px 56px #d3e1be3f;
-  background: #fff;
-}
-.section-content {
-  display: none;
-  width: 100%;
-  min-width: 700px;
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 0;
-  background: transparent;
-  border-radius: var(--border-radius);
-  min-height: 350px;
-  max-height: none;
-  overflow: visible;
-  font-weight: 400;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  left: 0; right: 0; top: 0; bottom: 0;
-}
-.section-content.active {
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-  animation: fadeInUp 0.45s cubic-bezier(.6,.01,.35,1.02);
-  position: static;
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(60px) scale(0.98);}
-  to { opacity: 1; transform: translateY(0) scale(1);}
-}
-.big-section-box,
-.om-mig-box,
-.mapping-box {
-  background: var(--card-bg); /* semi-transparent white */
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 32px rgba(58,143,231,0.10), 0 1px 4px rgba(58,143,231,0.07);
-  border: 1.5px solid #b6c7b4;
-  padding: 4vw 4vw 3vw 4vw;
-  margin: 2vw auto 3vw auto;
-  max-width: 900px;
-  min-width: 700px;
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
-  transition: box-shadow 0.18s, transform 0.14s;
-}
-.big-section-box:hover,
-.om-mig-box:hover,
-.mapping-box:hover {
-  box-shadow: 0 12px 40px rgba(58,143,231,0.17), 0 2px 8px rgba(58,143,231,0.11);
-  transform: scale(1.012);
+    /* CSS Custom Properties */
+    :root {
+      --background: #e3eaf7;
+      --primary: #3A8FE7;
+      --secondary: #EFD9B4;
+      --accent: #F5E8C5;
+      --card-bg: rgba(255,255,255,0.18);
+      --text-dark: #2C3E50;
+      --highlight: #B8FFF4;
+      --soft-green: #d3e1be;
+      --accent-green: #294231;
+      --title-green: #294231;
+      --font-title: 'Playfair Display', serif;
+      --font-main: 'Playfair Display', serif;
+      --border-radius: 24px;
     }
-    .big-section-box .section-title {
-      font-size: 2.25rem;
-      margin-bottom: 2rem;
+
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
     }
-    .big-section-box .profile-description {
-      font-size: 1.25rem;
-      margin-bottom: 2.2rem;
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--background);
+      font-family: var(--font-main);
+      color: var(--text-dark);
+      font-weight: 400;
+      min-height: 100vh;
+      overscroll-behavior: none;
     }
-    .big-section-box .experience-list {
-      gap: 2.6rem;
+
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 1000;
+      border-radius: 4px;
     }
-    .big-section-box .experience-item {
-      font-size: 1.13rem;
-      padding: 1.4rem 2.2rem 1.4rem 1.8rem;
+
+    .skip-link:focus {
+      top: 6px;
     }
-    .big-section-box .experience-title {
-      font-size: 1.25rem;
+
+    /* Video Background */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--background) 0%, #f0f6ff 100%);
+      z-index: 0;
+      pointer-events: none;
     }
-    .big-section-box .experience-company {
-      font-size: 1.08rem;
+
+    /* Layout */
+    .split-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
     }
-    .om-mig-box, .mapping-box {
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 340px;
+      min-width: 210px;
+      background: rgba(255,255,255,0.23);
+      border-right: 2px solid var(--soft-green);
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+      box-shadow: 0 8px 32px rgba(58,143,231,0.08);
+      z-index: 10;
+    }
+
+    .sidebar-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      height: 210px;
+      padding: 0 1rem;
+      margin-top: 40px;
+      margin-bottom: 34px;
+    }
+
+    .name-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.12;
+      font-family: var(--font-title);
+      color: var(--title-green);
+    }
+
+    /* Navigation Menu */
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-left: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu a {
+      display: inline-block;
+      font-size: 1.11rem;
+      color: var(--title-green);
+      text-decoration: none;
+      padding: 0.19em 0.95em;
+      border-radius: 22px;
+      transition: all 0.16s ease;
+      cursor: pointer;
+      opacity: 0.7;
+      letter-spacing: 0.01em;
+      font-weight: 500;
+    }
+
+    .menu a:hover,
+    .menu a:focus,
+    .menu a.active {
+      background: var(--soft-green);
+      color: var(--accent-green);
+      opacity: 1;
+      transform: translateX(7px) scale(1.07);
+      box-shadow: 0 2px 12px rgba(182,199,180,0.2);
+      outline: 2px solid transparent;
+    }
+
+    .menu a:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Main Content Area */
+    .content-area {
+      flex: 1;
+      min-height: 100vh;
+      margin-left: 340px;
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    /* Content Sections */
+    .section-content {
+      display: none;
+      width: 100%;
+      max-width: 1260px;
+      margin: 0 auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .section-content.active {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+      animation: fadeInUp 0.45s cubic-bezier(.6,.01,.35,1.02);
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(60px) scale(0.98);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Card Styles */
+    .content-box {
       background: var(--card-bg);
       border-radius: var(--border-radius);
-      box-shadow: 0 2px 24px #b6c7b414;
-      margin: 2.4vw auto 3vw auto;
-      padding: 3vw 4vw 2.5vw 4vw;
-      width: 92%;
+      box-shadow: 0 2px 32px rgba(58,143,231,0.10);
+      border: 1.5px solid var(--soft-green);
+      padding: 3rem;
+      margin: 2rem auto;
       max-width: 900px;
-      min-width: 700px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+      transition: all 0.3s ease;
     }
-    .om-mig-box {
-      padding-bottom: 2vw;
+
+    .content-box:hover {
+      box-shadow: 0 12px 40px rgba(58,143,231,0.17);
+      transform: scale(1.01);
     }
-    .om-mig-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--title-green);
-      margin-top: 0;
-      margin-bottom: 0.8rem;
-      text-align: center;
-    }
-    .om-mig-desc {
-      font-size: 1.15rem;
-      margin-bottom: 2.2rem;
-      color: #232323;
-      font-weight: 400;
-      text-align: center;
-    }
-    .stats-row {
-      display: flex;
-      gap: 2vw;
-      margin-bottom: 2vw;
-      margin-top: 0.4vw;
-      justify-content: center;
-      width: 100%;
-    }
-    .stat-card {
-      background: linear-gradient(120deg, var(--soft-green) 56%, #f8faf7 100%);
-      color: var(--title-green);
-      border-radius: var(--border-radius);
-      flex: 1 1 0px;
-      min-width: 180px;
-      max-width: 320px;
-      padding: 2.6rem 1.2rem 2.2rem 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-weight: 700;
-      font-size: 2.25rem;
-      box-shadow: 0 2px 12px #b6c7b412;
-      justify-content: center;
-      border: 1.5px solid var(--soft-green);
-      position: relative;
-    }
-    .stat-card-label {
-      font-size: 1.19rem;
-      font-weight: 400;
-      margin-top: 9px;
-      color: var(--accent-green);
-      opacity: 0.95;
-      font-family: var(--font-main);
-    }
-    .stat-card .stat-card-bold {
-      font-weight: 700;
-      font-size: 1.19rem;
-      color: var(--title-green);
-      font-family: var(--font-title);
-      margin-bottom: 2px;
-    }
-    .contact-lang-row {
-      display: flex;
-      gap: 6vw;
-      margin-top: 2vw;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: stretch;
-      width: 100%;
-    }
-    .contact-col, .lang-col {
-      flex: 1 1 380px;
-      min-width: 270px;
-      max-width: 380px;
-    }
-    .contact-title, .lang-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--title-green);
-      margin-bottom: 1.6vw;
-      margin-top: 0.7vw;
-    }
-    .contact-item, .lang-item {
-      font-size: 1.09rem;
-      margin-bottom: 0.8vw;
-      color: #232323;
-      display: flex;
-      align-items: center;
-    }
-    .contact-label, .lang-label {
-      font-weight: 600;
-      color: var(--title-green);
-      margin-right: 0.5em;
-      min-width: 80px;
-      display: inline-block;
-    }
-    .contact-value, .lang-value {
-      font-weight: 400;
-      color: #294231;
-    }
-    .address-row {
-      margin-top: 1vw;
-      font-size: 1.09rem;
-      color: #294231;
-    }
-    hr {
-      border: none;
-      border-top: 1.5px solid var(--soft-green);
-      margin: 2vw 0 2vw 0;
-      width: 100%;
-    }
-    .mapping-box {
-      padding-bottom: 2.2vw;
-      margin-top: 2vw;
-      margin-bottom: 3vw;
-      align-items: stretch;
-      max-width: 1100px;
-    }
-    .mapping-headline {
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--title-green);
-      margin: 0 0 0.37em 0;
-      text-align: center;
-    }
-    .mapping-desc {
-      font-size: 1.15rem;
-      margin-bottom: 2.1vw;
-      color: #232323;
-      font-weight: 400;
-      text-align: center;
-    }
-    .mapping-flex {
-      display: flex;
-      flex-direction: row;
-      gap: 2vw;
-      align-items: stretch;
-      margin-bottom: 2vw;
-      justify-content: center;
-      min-height: 370px;
-    }
-    .mapping-left {
-      flex: 0 1 510px;
-      min-width: 410px;
-      max-width: 560px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background: none;
-    }
-    .radar-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--title-green);
-      margin: 1.8vw 0 1.7vw 0;
-      text-align: center;
-      letter-spacing: 0.03em;
-    }
-    #skillChart {
-      width: 400px !important;
-      height: 400px !important;
-      min-width: 340px;
-      min-height: 340px;
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      overflow: visible;
-    }
-    .radar-legend-wrap {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      margin-top: 2.3em;
-    }
-    /* NEW LEGEND STYLES */
-    .mapping-legendbox {
-      background: #fff;
-      border-radius: 14px;
-      margin: 0;
-      padding: 1.5em 2em 1.1em 2em;
-      box-shadow: 0 2px 10px #b6c7b410;
-      color: var(--title-green);
-      border: 1.5px solid var(--soft-green);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      min-width: 340px;
-      max-width: 430px;
-    }
-    .legend {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.12rem;
-      justify-content: flex-start;
-      width: 100%;
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .legend-color {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: inline-block;
-      margin: 0 6px 0 0;
-      vertical-align: middle;
-    }
-    .legend-dark { background: var(--legend-dark); }
-    .legend-light { background: var(--legend-light); }
-    .mapping-niveau {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 1.3rem;
-      gap: 4px;
-      font-size: 1.08rem;
-      text-align: left;
-      width: 100%;
-    }
-    .niveau-title {
-      margin-bottom: 7px;
-    }
-    .mapping-niveau b {
-      font-weight: 600;
-      font-size: 1.08rem;
-    }
-    .mapping-right {
-      flex: 1 1 0;
-      min-width: 340px;
-      margin-left: 1vw;
-      margin-right: 1vw;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      align-self: stretch;
-      justify-content: flex-start;
-      overflow: visible !important;
-      max-width: 99vw;
-    }
-    .mapping-detail-card {
-      background: linear-gradient(120deg, var(--soft-green) 98%, #f4f7ef 100%);
-      border-radius: 20px;
-      box-shadow: 0 2px 24px #b6c7b433;
-      color: var(--title-green);
-      padding: 2.2rem 2.2rem 2.1rem 2.2rem;
-      margin-bottom: 0.7vw;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-size: 1.15rem;
-      font-weight: 400;
-      border: 1.5px solid var(--soft-green);
-      overflow: visible !important;
-      max-width: none !important;
-      word-break: normal;
-      white-space: normal;
-    }
-    .mapping-detail-title { font-size: 1.26rem; font-weight: 700; margin-bottom: 0.7rem; }
-    .mapping-detail-prolevel {
-      background: #fff;
-      color: var(--title-green);
-      font-size: 0.95rem;
-      font-weight: 700;
-      border-radius: 15px;
-      padding: 2.5px 14px;
-      display: inline-block;
-      margin-left: 10px;
-      vertical-align: middle;
-      letter-spacing: 0.04em;
-      border: 1px solid var(--soft-green);
-    }
-    .mapping-detail-desc { font-size: 1.08rem; margin-bottom: 1.1rem;}
-    .competency-section {
-      background: var(--soft-green);
-      border-radius: 13px;
-      padding: 13px 14px;
-      margin-bottom: 10px;
-      color: var(--title-green);
-      font-size: 1.07rem;
-    }
-    .competency-section h4 {
-      margin: 0 0 5px 0;
-      font-size: 1.05rem;
-      color: var(--title-green);
-      font-weight: 700;
-    }
-    .competency-section p {
-      margin: 0;
-      font-size: 1.07rem;
-      color: #294231;
-      font-weight: 400;
-    }
+
+    /* Typography */
     .section-title {
       font-size: 2rem;
       font-weight: 700;
       color: var(--title-green);
-      margin-top: 0;
-      margin-bottom: 1.35rem;
+      margin: 0 0 1.5rem 0;
       text-align: center;
     }
+
     .profile-description {
       color: var(--text-dark);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       font-size: 1.15rem;
-      line-height: 1.62;
-      max-width: 900px;
+      line-height: 1.6;
       text-align: center;
     }
-    .centered-content {
-      width: 100%;
+
+    /* Stats Cards */
+    .stats-row {
+      display: flex;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: linear-gradient(120deg, var(--soft-green) 56%, #f8faf7 100%);
+      color: var(--title-green);
+      border-radius: var(--border-radius);
+      flex: 1;
+      min-width: 180px;
+      max-width: 250px;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+      box-shadow: 0 2px 12px rgba(182,199,180,0.1);
+      border: 1.5px solid var(--soft-green);
+    }
+
+    .stat-card-label {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 0.5rem;
+      color: var(--accent-green);
+      opacity: 0.95;
+    }
+
+    /* Contact Information */
+    .contact-row {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-col {
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+    }
+
+    .contact-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--title-green);
+      margin-bottom: 1rem;
+    }
+
+    .contact-item {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-label {
+      font-weight: 600;
+      color: var(--title-green);
+      margin-right: 0.5rem;
+      min-width: 80px;
+    }
+
+    .contact-value {
+      font-weight: 400;
+      color: var(--accent-green);
+    }
+
+    .contact-value a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* Skill Radar Chart */
+    .radar-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      margin: 2rem 0;
     }
+
+    .radar-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--title-green);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    #skillChart {
+      width: 400px;
+      height: 400px;
+      margin: 1rem 0;
+    }
+
+    .radar-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--soft-green);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
+
+    /* Experience List */
     .experience-list {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-      width: 100%;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
+
     .experience-item {
-      background: #fff;
-      border-radius: 13px;
-      margin-bottom: 0;
-      padding: 0.6rem 2rem 0.6rem 1.6rem;
-      box-shadow: 0 1px 8px #b6c7b110;
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(182,199,180,0.1);
       border: 1.5px solid var(--soft-green);
-      width: 100%;
-      max-width: 680px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 1.6rem;
       cursor: pointer;
-      transition: box-shadow 0.18s, transform 0.16s;
-      position: relative;
+      transition: all 0.3s ease;
     }
-    .experience-item.active, .experience-item:active {
-      box-shadow: 0 6px 26px #7e9c8577;
-      transform: scale(1.025);
+
+    .experience-item:hover {
+      box-shadow: 0 6px 20px rgba(126,156,133,0.2);
+      transform: translateY(-2px);
     }
+
     .experience-header {
-      border: none;
-      background: none;
-      padding: 0.8rem 0;
-      font-weight: 700;
-      color: var(--title-green);
-      font-size: 1.1rem;
-      cursor: pointer;
-      position: relative;
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
     }
-    .experience-header::after {
-      content: "Klik for detaljer";
-      position: absolute;
-      right: 4px;
-      top: 1.2rem;
+
+    .experience-info {
+      flex: 1;
+    }
+
+    .experience-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--title-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-company {
+      font-size: 1rem;
+      color: var(--accent-green);
+      opacity: 0.8;
+    }
+
+    .experience-toggle {
       font-size: 0.8rem;
       color: #a3b3a8;
       font-weight: 400;
     }
-    .experience-title { font-weight: 700; font-size: 1.13rem; margin-bottom: 0; }
-    .experience-company { font-size: 0.98rem; opacity: 0.9; font-weight: 400;}
+
     .experience-details {
-      padding: 0.5rem 0 1.1rem 0;
-      background: #f8faf7;
-      border-top: 1px solid var(--soft-green);
       display: none;
-      font-weight: 400;
-      animation: fadeInUp 0.3s;
+      padding-top: 1rem;
+      border-top: 1px solid var(--soft-green);
       margin-top: 1rem;
     }
+
     .experience-details.active {
       display: block;
+      animation: fadeIn 0.3s ease;
     }
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 9px;}
-    .skill-tag { background: var(--accent-green); color: #fff; border-radius: 9px; padding: 3px 8px; font-size: 0.98rem;}
-    .motivation-text { padding: 2.1rem 2rem 2.1rem 1.6rem; font-size: 1.13rem; text-align: center; }
-    /* MOBILE STYLES */
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-tag {
+      background: var(--accent-green);
+      color: white;
+      border-radius: 15px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
     @media (max-width: 1100px) {
-   .big-section-box, .om-mig-box, .mapping-box {
-  background: var(--card-bg);
-  border-radius: 0;
-  box-shadow: 0 6px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.06);
-  border: 1.5px solid var(--secondary);
-  padding: 3vw 4vw 2vw 4vw;
-  margin: 2vw auto 3vw auto;
-  max-width: 900px;
-  min-width: 300px;
-  transition: box-shadow 0.18s, transform 0.14s;
-}
-.big-section-box:hover, .om-mig-box:hover, .mapping-box:hover {
-  box-shadow: 0 12px 40px rgba(58,143,231,0.13), 0 2px 8px rgba(58,143,231,0.09);
-  transform: scale(1.012);
-}
-.section-title, .radar-title, .om-mig-title, .mapping-headline {
-  color: var(--primary);
-}
-.menu a {
-  color: var(--primary);
-}
-.menu a.active, .menu a:hover {
-  background: var(--highlight);
-  color: var(--text-dark);
-}
-    @media (max-width: 700px) {
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-left: 1rem;
-  margin-top: 0;
-  padding: 0;
-  width: auto;
-  background: none;
-  box-shadow: none;
-}
-.menu a {
-  display: inline-block;
-  font-size: 1.11rem;
-  color: var(--primary);
-  text-decoration: none;
-  padding: 0.19em 0.95em;
-  border-radius: 22px;
-  transition: background 0.16s, color 0.14s, transform 0.18s, box-shadow 0.15s;
-  cursor: pointer;
-  opacity: 0.8;
-  letter-spacing: 0.01em;
-  font-weight: 500;
-  background: none;
-  box-shadow: none;
-  margin: 0;
-  min-width: 0;
-}
-.menu a.active,
-.menu a:hover {
-  background: var(--highlight);
-  color: var(--accent-green);
-  opacity: 1;
-  transform: translateX(7px) scale(1.07);
-  box-shadow: 0 2px 12px 0 #b6c7b433;
-  border-radius: 22px;
-}
-.menu a:active {
-  background: #def0de;
-  color: #1f3324;
-  transform: translateX(2px) scale(0.98);
-}
+      .sidebar {
+        width: 280px;
       }
+      
+      .content-area {
+        margin-left: 280px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+      }
+
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+
       .content-area {
         margin-left: 0;
-        margin-top: 0;
+        padding: 1rem;
       }
-      .big-section-box,
-      .om-mig-box,
-      .mapping-box {
-        padding: 4vw 2vw;
-        min-width: 0;
-        width: 98vw;
-        box-sizing: border-box;
-        max-width: 100vw;
+
+      .mobile-menu-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        cursor: pointer;
       }
-      .section-content,
-      .big-section-box,
-      .om-mig-box,
-      .mapping-box {
-        min-width: 0;
-        max-width: 100vw;
+
+      .name-title {
+        font-size: 1.8rem;
       }
-      .stats-row,
-      .contact-lang-row {
-        flex-direction: column;
-        gap: 18px;
-      }
-      .stat-card,
-      .contact-col,
-      .lang-col {
-        min-width: 0;
-        max-width: 100vw;
-      }
-      .mapping-flex {
-        flex-direction: column;
-        gap: 15px;
-        min-height: 0;
-      }
-      #skillChart {
-        width: 95vw !important;
-        min-width: 0 !important;
-        height: 220px !important;
-      }
-      .om-mig-title,
-      .mapping-headline,
-      .radar-title,
+
       .section-title {
-        font-size: 1.2rem !important;
+        font-size: 1.5rem;
       }
-      .om-mig-desc,
-      .mapping-desc,
-      .profile-description {
-        font-size: 1rem !important;
+
+      .stats-row {
+        flex-direction: column;
+        align-items: center;
       }
-      .experience-title,
-      .experience-company {
-        font-size: 1rem !important;
+
+      .contact-row {
+        flex-direction: column;
       }
-      .front-image {
-        min-height: 30vh;
-        height: auto;
-        max-width: 100vw;
-        object-fit: cover;
+
+      #skillChart {
+        width: 300px;
+        height: 300px;
       }
-      .mapping-legendbox {
-        min-width: 0;
-        max-width: 100vw;
-        padding: 1.1em 1.2em 1em 1.2em;
-     }
+    }
+
+    .mobile-menu-toggle {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline></video>
+  <a href="#main-content" class="skip-link">Spring til hovedindhold</a>
+  
+  <div class="video-bg" role="presentation" aria-hidden="true"></div>
+  
+  <button class="mobile-menu-toggle" aria-label="Åbn menu" onclick="toggleMobileMenu()">☰</button>
+  
   <div class="split-layout">
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <div class="name-title">Anne Sofie Uhrskov<br>Mikkelsen</div>
-      </div>
-      <nav class="menu">
-        <a href="#" data-section="front" class="active">Forside</a>
-        <a href="#" data-section="ommig">Det praktiske</a>
-        <a href="#" data-section="kompetencer">Kompetencer Radar</a>
-        <a href="#" data-section="erfaring">Stoppesteder</a>
-        <a href="#" data-section="uddannelse">Uddannelsesruter</a>
-        <a href="#" data-section="motivation">Eventyrlyst</a>
-      </nav>
-    </div>
-    <div class="content-area">
-      <!-- Forside (optional welcome message) -->
-      <div class="section-content" id="front-section">
-        <div class="big-section-box">
-          <div class="section-title">Velkommen!</div>
-          <div class="profile-description">Dette er forsiden. Klik på menuen til venstre for at se mere.</div>
-        </div>
-      </div>
-      <!-- Om Mig -->
-      <div class="section-content" id="ommig-section">
-        <div class="om-mig-box">
-          <div class="om-mig-title">Struktureret koordinator med kreativt drive</div>
-          <div class="om-mig-desc">
-            Erfaren koordinator med en god blanding af struktur og kreativt kaos.<br>
-            Specialist i at holde overblikket, samle folk om fællesmål og løse problemer når de opstår.<br>
-            Passioneret omkring marketing der vækker følelser og nysgerrighed.<br>
-            I søger noget nyt, og jeg søger en kreativ udfordring!
+    <nav class="sidebar" role="navigation" aria-label="Hovednavigation">
+      <header class="sidebar-header">
+        <h1 class="name-title">Anne Sofie<br>Uhrskov<br>Mikkelsen</h1>
+      </header>
+      <ul class="menu" role="menubar">
+        <li role="none"><a href="#" role="menuitem" data-section="front" class="active" tabindex="0">Forside</a></li>
+        <li role="none"><a href="#" role="menuitem" data-section="ommig" tabindex="0">Det praktiske</a></li>
+        <li role="none"><a href="#" role="menuitem" data-section="kompetencer" tabindex="0">Kompetencer Radar</a></li>
+        <li role="none"><a href="#" role="menuitem" data-section="erfaring" tabindex="0">Stoppesteder</a></li>
+        <li role="none"><a href="#" role="menuitem" data-section="uddannelse" tabindex="0">Uddannelsesruter</a></li>
+        <li role="none"><a href="#" role="menuitem" data-section="motivation" tabindex="0">Eventyrlyst</a></li>
+      </ul>
+    </nav>
+
+    <main class="content-area" id="main-content">
+      <!-- Forside Section -->
+      <section class="section-content active" id="front-section" aria-labelledby="front-title">
+        <div class="content-box">
+          <h2 class="section-title" id="front-title">Velkommen!</h2>
+          <div class="profile-description">
+            Hej! Jeg er Anne Sofie - en struktureret koordinator med et kreativt drive.<br>
+            Klik på menuen til venstre for at udforske min professionelle rejse og se, hvad jeg kan bidrage med.
           </div>
           <div class="stats-row">
             <div class="stat-card">
-              <span class="stat-card-bold">50+</span>
-              <div class="stat-card-label">Brands koordineret</div>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card-bold">3+</span>
+              <div>3+</div>
               <div class="stat-card-label">Års erfaring</div>
             </div>
             <div class="stat-card">
-              <span class="stat-card-bold">Nyligt Afsluttet</span>
+              <div>50+</div>
+              <div class="stat-card-label">Brands koordineret</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Om Mig Section -->
+      <section class="section-content" id="ommig-section" aria-labelledby="ommig-title">
+        <div class="content-box">
+          <h2 class="section-title" id="ommig-title">Struktureret koordinator med kreativt drive</h2>
+          <div class="profile-description">
+            Erfaren koordinator med en god blanding af struktur og kreativt kaos.<br>
+            Specialist i at holde overblikket, samle folk om fællesmål og løse problemer når de opstår.<br>
+            Passioneret omkring marketing der vækker følelser og nysgerrighed.
+          </div>
+          
+          <div class="stats-row">
+            <div class="stat-card">
+              <div>50+</div>
+              <div class="stat-card-label">Brands koordineret</div>
+            </div>
+            <div class="stat-card">
+              <div>3+</div>
+              <div class="stat-card-label">Års erfaring</div>
+            </div>
+            <div class="stat-card">
+              <div>2025</div>
               <div class="stat-card-label">Projektledelses kursus</div>
             </div>
           </div>
-          <hr>
-          <div class="contact-lang-row">
+
+          <hr style="border: none; border-top: 1.5px solid var(--soft-green); margin: 2rem 0;">
+
+          <div class="contact-row">
             <div class="contact-col">
-              <div class="contact-title">Kontakt</div>
+              <h3 class="contact-title">Kontakt</h3>
               <div class="contact-item">
                 <span class="contact-label">Email:</span>
-                <span class="contact-value">annesofieum@outlook.dk</span>
+                <span class="contact-value"><a href="mailto:annesofieum@outlook.dk">annesofieum@outlook.dk</a></span>
               </div>
               <div class="contact-item">
                 <span class="contact-label">Telefon:</span>
-                <span class="contact-value">+45 20517479</span>
+                <span class="contact-value"><a href="tel:+4520517479">+45 20517479</a></span>
               </div>
               <div class="contact-item">
                 <span class="contact-label">LinkedIn:</span>
-                <a href="https://www.linkedin.com/in/anne-sofie-uhrskov-mikkelsen-7a3349197" target="_blank" class="contact-value">Anne Sofie Uhrskov Mikkelsen</a>
+                <span class="contact-value"><a href="https://www.linkedin.com/in/anne-sofie-uhrskov-mikkelsen-7a3349197" target="_blank" rel="noopener">Anne Sofie Uhrskov Mikkelsen</a></span>
               </div>
-              <div class="address-row">
+              <div class="contact-item" style="margin-top: 1rem;">
                 <span class="contact-label">Adresse:</span>
                 <span class="contact-value">Højbjerg Huse 36, 8840 Rødkærsbro, Danmark</span>
               </div>
             </div>
-            <div class="lang-col">
-              <div class="lang-title">Sprog</div>
-              <div class="lang-item"><span class="lang-label">Dansk</span><span class="lang-value" style="margin-left:auto;">Modersmål</span></div>
-              <div class="lang-item"><span class="lang-label">Engelsk</span><span class="lang-value" style="margin-left:auto;">Flydende</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Kompetencer -->
-      <div class="section-content" id="kompetencer-section">
-        <div class="mapping-box">
-          <div class="mapping-headline">Kompetence Mapping</div>
-          <div class="mapping-desc">
-            Interaktiv visualisering af mine kompetencer relevante for rollen som Content Magiker hos DanExplore.
-          </div>
-          <div class="mapping-flex">
-            <div class="mapping-left">
-              <div class="radar-title">Kompetence Radar</div>
-              <svg id="skillChart"></svg>
-              <div class="radar-legend-wrap">
-                <div class="mapping-legendbox">
-                  <div class="legend">
-                    <span class="legend-color legend-dark"></span>
-                    <span>Rejseleder-niveau (Guide/Ekspert på ruten)</span>
-                  </div>
-                  <div class="legend">
-                    <span class="legend-color legend-light"></span>
-                    <span>Nye destinationer (Udviklingsområder)</span>
-                  </div>
-                  <div class="mapping-niveau">
-                    <div class="niveau-title"><b>Kompetence Niveauer:</b></div>
-                    <div><b>Niveau 1:</b> Backpacker</div>
-                    <div><b>Niveau 2:</b> Eventyrer</div>
-                    <div><b>Niveau 3:</b> Opdagelsesrejsende</div>
-                    <div><b>Niveau 4:</b> Guide</div>
-                    <div><b>Niveau 5:</b> Rejseekspert</div>
-                  </div>
-                </div>
+            <div class="contact-col">
+              <h3 class="contact-title">Sprog</h3>
+              <div class="contact-item">
+                <span class="contact-label">Dansk:</span>
+                <span class="contact-value">Modersmål</span>
               </div>
-            </div>
-            <div class="mapping-right skill-details">
-              <div class="mapping-detail-card default-message">
-                <div class="mapping-detail-title" style="font-size:1.13rem;">Klik på en kompetence</div>
-                <div class="mapping-detail-desc">Klik på et punkt eller navn i radaren for at se detaljeret information om mine kompetencer og erfaring.</div>
+              <div class="contact-item">
+                <span class="contact-label">Engelsk:</span>
+                <span class="contact-value">Flydende</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Erfaring -->
-      <div class="section-content" id="erfaring-section">
-        <div class="big-section-box">
-          <div class="section-title">Relevant Erfaring</div>
+      </section>
+
+      <!-- Kompetencer Section -->
+      <section class="section-content" id="kompetencer-section" aria-labelledby="kompetencer-title">
+        <div class="content-box">
+          <h2 class="section-title" id="kompetencer-title">Kompetence Mapping</h2>
           <div class="profile-description">
-            Min professionelle baggrund og hvordan disse erfaringer oversættes til jobbet som Content Magiker hos DanExplore.
+            Interaktiv visualisering af mine kompetencer og erfaring inden for marketing og projektledelse.
           </div>
-          <div class="centered-content">
-            <div class="experience-list">
-              <!-- Experience 1 -->
-              <div class="experience-item" onclick="toggleExperience('adjutant')" id="adjutant-item">
-                <div class="experience-header">
-                  <div class="experience-title">Marketplace Manager</div>
+          
+          <div class="radar-container">
+            <h3 class="radar-title">Kompetence Radar</h3>
+            <svg id="skillChart" aria-label="Radar chart showing skill levels in different areas"></svg>
+            <div class="radar-legend">
+              <div class="legend-item">
+                <span class="legend-color" style="background: #294231;"></span>
+                <span>Høj kompetence (Guide/Ekspert niveau)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: #7e9c85;"></span>
+                <span>Udviklings område</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Erfaring Section -->
+      <section class="section-content" id="erfaring-section" aria-labelledby="erfaring-title">
+        <div class="content-box">
+          <h2 class="section-title" id="erfaring-title">Professionelle Stoppesteder</h2>
+          <div class="profile-description">
+            Min professionelle baggrund og hvordan disse erfaringer bidrager til mine kompetencer.
+          </div>
+          
+          <div class="experience-list">
+            <article class="experience-item" tabindex="0" onclick="toggleExperience('adjutant')" onkeydown="handleExperienceKeydown(event, 'adjutant')">
+              <div class="experience-header">
+                <div class="experience-info">
+                  <h3 class="experience-title">Marketplace Manager</h3>
                   <div class="experience-company">Adjutant (Marts 2022 – November 2024) • Høj relevans</div>
                 </div>
-                <div id="adjutant-details" class="experience-details">
-                  <div class="skills-grid">
-                    <div class="skill-tag">Projektkoordination</div>
-                    <div class="skill-tag">Team Ledelse</div>
-                    <div class="skill-tag">Performance Tracking</div>
-                    <div class="skill-tag">Tværfagligt Samarbejde</div>
-                    <div class="skill-tag">Visuel kommunikation</div>
-                  </div>
-                  <div class="skills-grid" style="margin-bottom: 10px;">
-                    <span class="skill-tag" style="background:#d1e7f7;color:#294231;">PowerBI</span>
-                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
-                  </div>
-                  <ul>
-                    <li>Koordinerede back-office og daily operations for 50+ brands</li>
-                    <li>Analyserede salgsdata og markedstendenser til at hjælpe med strategiske beslutninger</li>
-                    <li>Faciliterede samarbejde mellem forskellige faggrupper dagligt</li>
-                    <li>Ledede og trænede studentermedhjælper mens jeg beholdt overblikket over alle brand operationer</li>
-                  </ul>
-                  <p><strong>Case:</strong> Med over 50 brands i porteføljen var det afgørende for mig at skabe struktur, så jeg kunne bevare overblikket – ikke bare over egne opgaver, men også for teamet. Jeg udviklede systemer til opgavestyring, der sikrede, at alle deadlines blev overholdt, og at intet blev overset. Det gav mig ikke kun ro til at løse mine egne opgaver effektivt, men gjorde det også muligt at oplære og støtte vores studentermedhjælper i hendes udvikling. Hun blev hurtigt selvkørende, og vi fik både mere kvalitet og mindre stress i teamet.</p>
-                </div>
+                <div class="experience-toggle">Klik for detaljer</div>
               </div>
-              <!-- Experience 2 -->
-              <div class="experience-item" onclick="toggleExperience('sofie')" id="sofie-item">
-                <div class="experience-header">
-                  <div class="experience-title">Kreativ Medarbejder</div>
+              <div id="adjutant-details" class="experience-details">
+                <div class="skills-grid">
+                  <span class="skill-tag">Projektkoordination</span>
+                  <span class="skill-tag">Team Ledelse</span>
+                  <span class="skill-tag">Performance Tracking</span>
+                  <span class="skill-tag">Tværfagligt Samarbejde</span>
+                  <span class="skill-tag">PowerBI</span>
+                  <span class="skill-tag">Excel</span>
+                </div>
+                <ul>
+                  <li>Koordinerede back-office og daily operations for 50+ brands</li>
+                  <li>Analyserede salgsdata og markedstendenser til strategiske beslutninger</li>
+                  <li>Faciliterede samarbejde mellem forskellige faggrupper dagligt</li>
+                  <li>Ledede og trænede studentermedhjælper</li>
+                </ul>
+                <p><strong>Case:</strong> Med over 50 brands var det afgørende at skabe struktur for at bevare overblikket. Jeg udviklede systemer til opgavestyring, der sikrede deadlines blev overholdt og intet blev overset.</p>
+              </div>
+            </article>
+
+            <article class="experience-item" tabindex="0" onclick="toggleExperience('sofie')" onkeydown="handleExperienceKeydown(event, 'sofie')">
+              <div class="experience-header">
+                <div class="experience-info">
+                  <h3 class="experience-title">Kreativ Medarbejder</h3>
                   <div class="experience-company">Sofie Ladefoged (Januar 2022 – Marts 2022) • Medium relevans</div>
                 </div>
-                <div id="sofie-details" class="experience-details">
-                  <div class="skills-grid">
-                    <div class="skill-tag">Content Creation</div>
-                    <div class="skill-tag">Brand Communication</div>
-                    <div class="skill-tag">Storytelling</div>
-                  </div>
-                  <div class="skills-grid" style="margin-bottom: 10px;">
-                    <span class="skill-tag" style="background:#d1e7f7;color:#294231;">Adobe</span>
-                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Later</span>
-                    <span class="skill-tag" style="background:#d1f7e7;color:#294231;">Wordpress</span>
-                    <span class="skill-tag" style="background:#f7d1e5;color:#294231;">Klaviyo</span>
-                    <span class="skill-tag" style="background:#f7f3d1;color:#294231;">Meta introduktion</span>
-                  </div>
-                  <ul>
-                    <li>Udviklede indhold og nyhedsbreve med fokus på bæredygtige produkter</li>
-                    <li>Arbejdede med storytelling og kommunikation på SOME kanaler</li>
-                    <li>Bidrog til brandets visuelle udtryk og marketingmaterialer</li>
-                  </ul>
-                  <p><strong>Case:</strong> Jeg fik ansvaret for at udvikle e-mailmarketing via Klaviyo, hvilket startede med et opstartsmøde med Klaviyos eget team for at forstå mulighederne i platformen. Derefter udarbejdede jeg en konkret strategi og stod for både opsætning af flows, contentplan og copywriting. Resultatet var et mere struktureret og engagerende nyhedsbrev, hvor vi tydeligt kunne se en stigning i både åbningsrater og klik fra modtagerne.</p>
-                </div>
+                <div class="experience-toggle">Klik for detaljer</div>
               </div>
-              <!-- Experience 3 -->
-              <div class="experience-item" onclick="toggleExperience('salling')" id="salling-item">
-                <div class="experience-header">
-                  <div class="experience-title">Indkøbspraktikant</div>
+              <div id="sofie-details" class="experience-details">
+                <div class="skills-grid">
+                  <span class="skill-tag">Content Creation</span>
+                  <span class="skill-tag">Brand Communication</span>
+                  <span class="skill-tag">Storytelling</span>
+                  <span class="skill-tag">Adobe</span>
+                  <span class="skill-tag">Klaviyo</span>
+                </div>
+                <ul>
+                  <li>Udviklede indhold og nyhedsbreve med fokus på bæredygtige produkter</li>
+                  <li>Arbejdede med storytelling og kommunikation på sociale medier</li>
+                  <li>Bidrog til brandets visuelle udtryk og marketingmaterialer</li>
+                </ul>
+                <p><strong>Case:</strong> Udviklede e-mailmarketing strategi via Klaviyo, hvilket resulterede i tydelig stigning i både åbningsrater og klik fra modtagerne.</p>
+              </div>
+            </article>
+
+            <article class="experience-item" tabindex="0" onclick="toggleExperience('salling')" onkeydown="handleExperienceKeydown(event, 'salling')">
+              <div class="experience-header">
+                <div class="experience-info">
+                  <h3 class="experience-title">Indkøbspraktikant</h3>
                   <div class="experience-company">Salling Group (August 2020 – December 2020) • Medium relevans</div>
                 </div>
-                <div id="salling-details" class="experience-details">
-                  <div class="skills-grid">
-                    <div class="skill-tag">Markedsresearch</div>
-                    <div class="skill-tag">Data Analyse</div>
-                  </div>
-                  <div class="skills-grid" style="margin-bottom: 10px;">
-                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
-                    <span class="skill-tag" style="background:#e7d1f7;color:#294231;">SAP</span>
-                  </div>
-                  <ul>
-                    <li>Indsamlede markedsindsigter gennem dataanalyse og kundefeedback til sortimentsoptimering</li>
-                    <li>Koordinerede udviklingsprojekter mellem indkøb, marketing og supply chain teams</li>
-                    <li>Bookede ordre og koordinerede med logistik</li>
-                  </ul>
-                  <p><strong>Case:</strong> Under julesalget lærte jeg, hvor afgørende det er at reagere hurtigt på data. Jeg fulgte løbende med i salgsudviklingen for de forskellige kategorier og tog initiativ til at justere sortiment og markedsføring på baggrund af de nyeste tal. For eksempel opdagede jeg en markant stigning i efterspørgslen på særlige gaveartikler og foreslog, at vi skubbede ekstra på i markedsføringen – hvilket førte til øget salg i perioden.</p>
-                </div>
+                <div class="experience-toggle">Klik for detaljer</div>
               </div>
-            </div>
+              <div id="salling-details" class="experience-details">
+                <div class="skills-grid">
+                  <span class="skill-tag">Markedsresearch</span>
+                  <span class="skill-tag">Data Analyse</span>
+                  <span class="skill-tag">Excel</span>
+                  <span class="skill-tag">SAP</span>
+                </div>
+                <ul>
+                  <li>Indsamlede markedsindsigter gennem dataanalyse og kundefeedback</li>
+                  <li>Koordinerede udviklingsprojekter mellem teams</li>
+                  <li>Bookede ordre og koordinerede med logistik</li>
+                </ul>
+                <p><strong>Case:</strong> Under julesalget opdagede jeg en markant stigning i efterspørgslen på særlige gaveartikler og foreslog ekstra markedsføring, hvilket førte til øget salg.</p>
+              </div>
+            </article>
           </div>
         </div>
-      </div>
-      <!-- Uddannelse -->
-      <div class="section-content" id="uddannelse-section">
-        <div class="big-section-box">
-          <div class="section-title">Uddannelse & Kurser</div>
+      </section>
+
+      <!-- Uddannelse Section -->
+      <section class="section-content" id="uddannelse-section" aria-labelledby="uddannelse-title">
+        <div class="content-box">
+          <h2 class="section-title" id="uddannelse-title">Uddannelsesruter</h2>
           <div class="profile-description">
-            Relevant uddannelse og kompetenceudvikling der styrker mine kvalifikationer som Marketing Projektleder.
+            Relevant uddannelse og kompetenceudvikling der styrker mine kvalifikationer.
           </div>
-          <div class="centered-content">
-            <div class="experience-list">
-              <div class="experience-item" onclick="toggleExperience('education-kursus')" id="education-kursus-item">
-                <div class="experience-header">
-                  <div class="experience-title">Projektledelses Kursus</div>
+          
+          <div class="experience-list">
+            <article class="experience-item" tabindex="0" onclick="toggleExperience('kursus')" onkeydown="handleExperienceKeydown(event, 'kursus')">
+              <div class="experience-header">
+                <div class="experience-info">
+                  <h3 class="experience-title">Projektledelses Kursus</h3>
                   <div class="experience-company">Itucation (2025) • Formelle værktøjer</div>
                 </div>
-                <div id="education-kursus-details" class="experience-details">
-                  <div class="skills-grid">
-                    <div class="skill-tag">Projektledelse</div>
-                    <div class="skill-tag">Strukturering</div>
-                    <div class="skill-tag">Koordination</div>
-                  </div>
-                  <ul>
-                    <li>Gennemførte projektledelses kursus for at få formelle værktøjer til min naturlige koordinationsevne</li>
-                    <li>Kombination af praktisk erfaring og teoretisk viden</li>
-                    <li>Fik indsigt i bl.a. SCRUM og effektive planlægningsværktøjer</li>
-                  </ul>
-                </div>
+                <div class="experience-toggle">Klik for detaljer</div>
               </div>
-              <div class="experience-item" onclick="toggleExperience('education-uni')" id="education-uni-item">
-                <div class="experience-header">
-                  <div class="experience-title">Designkultur og Økonomi</div>
-                  <div class="experience-company">Syddansk Universitet Kolding (August 2018 - Juli 2021)</div>
+              <div id="kursus-details" class="experience-details">
+                <div class="skills-grid">
+                  <span class="skill-tag">Projektledelse</span>
+                  <span class="skill-tag">SCRUM</span>
+                  <span class="skill-tag">Strukturering</span>
                 </div>
-                <div id="education-uni-details" class="experience-details">
-                  <div class="skills-grid">
-                    <div class="skill-tag">Design Thinking</div>
-                    <div class="skill-tag">Forretningsforståelse</div>
-                    <div class="skill-tag">Kulturanalyse</div>
-                    <div class="skill-tag">Visuel kommunikation</div>
-                  </div>
-                  <ul>
-                    <li>Kombination af kreative design processer og økonomisk forståelse</li>
-                    <li>Kulturelle trends og deres indvirkning på forbrugeradfærd</li>
-                    <li>Visuel kommunikation og brand udvikling</li>
-                    <li>Forretningsforståelse og markedsmekanismer</li>
-                  </ul>
-                </div>
+                <ul>
+                  <li>Gennemførte projektledelses kursus for at få formelle værktøjer</li>
+                  <li>Kombination af praktisk erfaring og teoretisk viden</li>
+                  <li>Lærte SCRUM og effektive planlægningsværktøjer</li>
+                </ul>
               </div>
-            </div>
+            </article>
+
+            <article class="experience-item" tabindex="0" onclick="toggleExperience('uni')" onkeydown="handleExperienceKeydown(event, 'uni')">
+              <div class="experience-header">
+                <div class="experience-info">
+                  <h3 class="experience-title">Designkultur og Økonomi</h3>
+                  <div class="experience-company">Syddansk Universitet Kolding (2018-2021)</div>
+                </div>
+                <div class="experience-toggle">Klik for detaljer</div>
+              </div>
+              <div id="uni-details" class="experience-details">
+                <div class="skills-grid">
+                  <span class="skill-tag">Design Thinking</span>
+                  <span class="skill-tag">Forretningsforståelse</span>
+                  <span class="skill-tag">Kulturanalyse</span>
+                  <span class="skill-tag">Visuel kommunikation</span>
+                </div>
+                <ul>
+                  <li>Kombination af kreative design processer og økonomisk forståelse</li>
+                  <li>Kulturelle trends og deres indvirkning på forbrugeradfærd</li>
+                  <li>Visuel kommunikation og brand udvikling</li>
+                  <li>Forretningsforståelse og markedsmekanismer</li>
+                </ul>
+              </div>
+            </article>
           </div>
         </div>
-      </div>
-      <!-- Motivation -->
-      <div class="section-content" id="motivation-section">
-        <div class="big-section-box">
-          <div class="section-title">Motivation</div>
-          <div class="profile-description" style="text-align:left;max-width:700px;margin:0 auto;">
-            <strong>At rejse er at leve</strong><br>
-           Er det ikke sådan man siger? Det er i hvert fald sådan jeg er vokset op. Med en mor som stewardesse gennem 35+ år har rejser altid været en del af opvæksten, og det har været absolut magisk. Det giver bare et helt andet perspektiv på hverd
+      </section>
+
+      <!-- Motivation Section -->
+      <section class="section-content" id="motivation-section" aria-labelledby="motivation-title">
+        <div class="content-box">
+          <h2 class="section-title" id="motivation-title">Eventyrlyst & Motivation</h2>
+          <div class="profile-description" style="text-align: left; max-width: 700px; margin: 0 auto;">
+            <strong>At rejse er at leve</strong><br><br>
+            Er det ikke sådan man siger? Det er i hvert fald sådan jeg er vokset op. Med en mor som stewardesse gennem 35+ år har rejser altid været en del af opvæksten, og det har været absolut magisk. Det giver bare et helt andet perspektiv på hverdagen når man har set verden fra forskellige vinkler.
+            <br><br>
+            <strong>Hvad driver mig?</strong><br>
+            Jeg elsker at skabe struktur i kaos og få ting til at fungere. Der er noget tilfredsstillende ved at koordinere forskellige elementer og se dem falde på plads. Samtidig har jeg en naturlig nysgerrighed og kreativitet, der driver mig til at finde nye løsninger og tilgange.
+            <br><br>
+            <strong>Hvorfor Content Magiker?</strong><br>
+            Kombination af struktur og kreativitet er perfekt for content marketing. At kunne formidle komplekse budskaber på en måde, der både engagerer og konverterer, kræver både analytisk tænkning og kreativ flair. Jeg ser frem til at bruge mine koordinationsevner til at skabe sammenhængende content strategier, der virkelig rammer målgruppen.
+            <br><br>
+            Min erfaring med at koordinere 50+ brands har lært mig vigtigheden af at forstå hver brands unikke identitet og målgruppe. Nu vil jeg gerne bruge den viden til at skabe content, der ikke bare ser godt ud, men som også leverer resultater.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Navigation functionality
+    function initNavigation() {
+      const menuLinks = document.querySelectorAll('.menu a');
+      const sections = document.querySelectorAll('.section-content');
+
+      menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const targetSection = e.target.dataset.section;
+          showSection(targetSection);
+          
+          // Update active menu item
+          menuLinks.forEach(l => l.classList.remove('active'));
+          e.target.classList.add('active');
+          
+          // Close mobile menu if open
+          closeMobileMenu();
+        });
+
+        // Keyboard navigation
+        link.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            link.click();
+          }
+        });
+      });
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section-content');
+      
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      const targetSection = document.getElementById(`${sectionId}-section`);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+    }
+
+    // Experience toggle functionality
+    function toggleExperience(experienceId) {
+      const details = document.getElementById(`${experienceId}-details`);
+      const item = document.getElementById(`${experienceId}-item`) || 
+                   document.querySelector(`[onclick*="${experienceId}"]`);
+      
+      if (details) {
+        details.classList.toggle('active');
+        
+        if (item) {
+          item.classList.toggle('active');
+        }
+      }
+    }
+
+    // Keyboard support for experience items
+    function handleExperienceKeydown(event, experienceId) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleExperience(experienceId);
+      }
+    }
+
+    // Mobile menu functionality
+    function toggleMobileMenu() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('mobile-open');
+    }
+
+    function closeMobileMenu() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.remove('mobile-open');
+    }
+
+    // Skill radar chart
+    function createSkillRadar() {
+      const data = [
+        { skill: 'Projektledelse', level: 4 },
+        { skill: 'Content Creation', level: 3 },
+        { skill: 'Data Analyse', level: 4 },
+        { skill: 'Teamwork', level: 5 },
+        { skill: 'Marketing', level: 3 },
+        { skill: 'Kommunikation', level: 5 },
+        { skill: 'Koordination', level: 5 },
+        { skill: 'Kreativitet', level: 4 }
+      ];
+
+      const svg = d3.select('#skillChart');
+      const width = 400;
+      const height = 400;
+      const margin = 80;
+      const radius = Math.min(width, height) / 2 - margin;
+
+      svg.attr('viewBox', `0 0 ${width} ${height}`)
+         .attr('preserveAspectRatio', 'xMidYMid meet');
+
+      const g = svg.append('g')
+                   .attr('transform', `translate(${width/2}, ${height/2})`);
+
+      // Create scales
+      const angleScale = d3.scaleLinear()
+                          .domain([0, data.length])
+                          .range([0, 2 * Math.PI]);
+
+      const radiusScale = d3.scaleLinear()
+                           .domain([0, 5])
+                           .range([0, radius]);
+
+      // Draw grid circles
+      [1, 2, 3, 4, 5].forEach(level => {
+        g.append('circle')
+         .attr('r', radiusScale(level))
+         .attr('fill', 'none')
+         .attr('stroke', '#d3e1be')
+         .attr('stroke-width', 1)
+         .attr('opacity', 0.5);
+      });
+
+      // Draw grid lines
+      data.forEach((d, i) => {
+        const angle = angleScale(i) - Math.PI / 2;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        g.append('line')
+         .attr('x1', 0)
+         .attr('y1', 0)
+         .attr('x2', x)
+         .attr('y2', y)
+         .attr('stroke', '#d3e1be')
+         .attr('stroke-width', 1)
+         .attr('opacity', 0.5);
+      });
+
+      // Create radar path
+      const lineGenerator = d3.lineRadial()
+                             .angle((d, i) => angleScale(i))
+                             .radius(d => radiusScale(d.level))
+                             .curve(d3.curveLinearClosed);
+
+      g.append('path')
+       .datum(data)
+       .attr('d', lineGenerator)
+       .attr('fill', '#294231')
+       .attr('fill-opacity', 0.3)
+       .attr('stroke', '#294231')
+       .attr('stroke-width', 2);
+
+      // Add data points
+      data.forEach((d, i) => {
+        const angle = angleScale(i) - Math.PI / 2;
+        const r = radiusScale(d.level);
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+
+        g.append('circle')
+         .attr('cx', x)
+         .attr('cy', y)
+         .attr('r', 4)
+         .attr('fill', d.level >= 4 ? '#294231' : '#7e9c85')
+         .attr('stroke', 'white')
+         .attr('stroke-width', 2);
+      });
+
+      // Add labels
+      data.forEach((d, i) => {
+        const angle = angleScale(i) - Math.PI / 2;
+        const labelRadius = radius + 20;
+        const x = Math.cos(angle) * labelRadius;
+        const y = Math.sin(angle) * labelRadius;
+
+        g.append('text')
+         .attr('x', x)
+         .attr('y', y)
+         .attr('text-anchor', 'middle')
+         .attr('dominant-baseline', 'middle')
+         .attr('fill', '#294231')
+         .attr('font-size', '12px')
+         .attr('font-weight', '500')
+         .text(d.skill);
+      });
+
+      // Add level indicators
+      [1, 2, 3, 4, 5].forEach(level => {
+        g.append('text')
+         .attr('x', 0)
+         .attr('y', -radiusScale(level))
+         .attr('text-anchor', 'middle')
+         .attr('dominant-baseline', 'middle')
+         .attr('fill', '#7e9c85')
+         .attr('font-size', '10px')
+         .text(level);
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initNavigation();
+      
+      // Only create radar if D3 is loaded
+      if (typeof d3 !== 'undefined') {
+        createSkillRadar();
+      } else {
+        // Fallback if D3 doesn't load
+        document.getElementById('skillChart').innerHTML = 
+          '<text x="200" y="200" text-anchor="middle" fill="#294231">Skill Radar (D3.js påkrævet)</text>';
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        
+        if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+          closeMobileMenu();
+        }
+      });
+
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 768) {
+            closeMobileMenu();
+          }
+        }, 250);
+      });
+    });
+
+    // Global functions for HTML onclick attributes
+    window.toggleExperience = toggleExperience;
+    window.handleExperienceKeydown = handleExperienceKeydown;
+    window.toggleMobileMenu = toggleMobileMenu;
+  </script>
+</body>
+</html>
