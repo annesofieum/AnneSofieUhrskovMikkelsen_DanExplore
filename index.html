@@ -7,74 +7,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
-  --background: #eaf6fa;
-  --primary: #217a7e;
-  --secondary: #99c9c2;
-  --accent: #cde8df;
-  --card-bg: rgba(255,255,255,0.92);
-  --card-bg-mobile: rgba(255,255,255,0.75);
-  --text-dark: #294231;
-  --highlight: #b7e6ff;
-  --border-radius: 22px;
+  --background: #eaf6fa;                 /* Soft light blue */
+  --primary: #217a7e;                    /* Deep teal */
+  --secondary: #99c9c2;                  /* Light pastel teal */
+  --accent: #cde8df;                     /* Soft mint */
+  --card-bg: rgba(255,255,255,0.80);     /* Glass white for boxes */
+  --card-bg-mobile: rgba(255,255,255,0.65); /* Glass white for mobile */
+  --text-dark: #294231;                  /* Slate/dark teal for text */
+  --highlight: #b7e6ff;                  /* Soft blue highlight */
+  --border-radius: 22px;                 /* Soft rounded boxes */
   --box-shadow: 0 6px 32px rgba(33,122,126,0.10), 0 1px 4px rgba(33,122,126,0.08);
 }
 
-/* Glassmorphism for content boxes */
-.big-section-box,
-.om-mig-box,
-.mapping-box {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  backdrop-filter: blur(8px) saturate(120%);
-  border: 1.5px solid var(--accent);
-  padding: 3vw 4vw 2vw 4vw;
-  margin: 2vw auto 3vw auto;
-  max-width: 900px;
-  min-width: 300px;
-  transition: box-shadow 0.18s, transform 0.14s;
-  color: #232323;
+/* --- New video background and overlay styles --- */
+.bg-video-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #fff;
 }
-
-.big-section-box *,
-.om-mig-box *,
-.mapping-box * {
-  color: #232323 !important;
+.bg-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 950px;
+  object-fit: cover;
+  z-index: 0;
+  transition: filter 0.5s;
 }
-
-/* Mobile glass effect */
-@media (max-width: 700px) {
-  .big-section-box,
-  .om-mig-box,
-  .mapping-box {
-    background: var(--card-bg-mobile);
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(33,122,126,0.15);
-    backdrop-filter: blur(10px) saturate(120%);
-    border: 1.5px solid var(--accent);
-  }
-}
-
-/* Example for overlay, if you want a slightly stronger effect on non-frontpages */
 .bg-overlay {
-  background: rgba(234,246,250,0.22);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(255,255,255,0.17);
   backdrop-filter: blur(7px) saturate(120%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
-
-.sidebar {
-  background: rgba(255,255,255,0.93);
-  border-radius: 0 32px 32px 0;
-  box-shadow: 0 2px 18px rgba(33,122,126,0.08);
-  border: none;
-}
-
-/* Optional: soften menu hover effect */
-.menu a.active, .menu a:hover {
-  background: var(--highlight);
-  color: var(--primary);
+body.with-overlay .bg-overlay {
   opacity: 1;
-  box-shadow: 0 2px 10px rgba(33,122,126,0.10);
-  border-radius: 18px;
+}
+body.with-overlay .bg-video {
+  filter: blur(9px);
 }
 
 html, body {
@@ -90,7 +71,7 @@ html, body {
   cursor: url('/compass-cursor.png') 16 16, auto;
   overscroll-behavior: none;
 }
-        .split-layout {
+      .split-layout {
       display: flex;
       min-height: 100vh;
       width: 100vw;
@@ -104,7 +85,7 @@ html, body {
       height: 100vh;
       width: 340px;
       min-width: 210px;
-      background: rgba(255,255,255,0.93);
+      background: #fff;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -112,8 +93,7 @@ html, body {
       box-sizing: border-box;
       z-index: 3;
       border-right: none;
-      box-shadow: 0 2px 18px rgba(33,122,126,0.08);
-      border-radius: 0 32px 32px 0;
+      box-shadow: 0 2px 22px 0 #dbeada1a;
     }
     .sidebar-header {
       display: flex;
@@ -129,11 +109,11 @@ html, body {
     .name-title {
       font-size: 2.5rem;
       font-weight: 600;
-      color: var(--primary);
+      color: var(--title-green);
       letter-spacing: 0.02em;
       line-height: 1.12;
       white-space: pre-line;
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-title);
       width: 100%;
       text-align: left;
     }
@@ -151,7 +131,7 @@ html, body {
     .menu a {
       display: inline-block;
       font-size: 1.11rem;
-      color: var(--primary);
+      color: var(--title-green);
       text-decoration: none;
       padding: 0.19em 0.95em;
       border-radius: 22px;
@@ -166,16 +146,16 @@ html, body {
       min-width: 0;
     }
     .menu a.active, .menu a:hover {
-      background: var(--highlight);
-      color: var(--primary);
+      background: var(--soft-green);
+      color: var(--accent-green);
       opacity: 1;
       transform: translateX(7px) scale(1.07);
-      box-shadow: 0 2px 10px rgba(33,122,126,0.10);
-      border-radius: 18px;
+      box-shadow: 0 2px 12px 0 #b6c7b433;
+      border-radius: 22px;
     }
     .menu a:active {
       background: #def0de;
-      color: #217a7e;
+      color: #1f3324;
       transform: translateX(2px) scale(0.98);
     }
     .content-area {
@@ -221,11 +201,10 @@ html, body {
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(60px) scale(0.98);}
       to { opacity: 1; transform: translateY(0) scale(1);}
-    }
-        .big-section-box {
+    }    .big-section-box {
       background: var(--card-bg);
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 2px 24px #b6c7b414;
       margin: 2vw auto 3vw auto;
       padding: 4vw 4vw 3vw 4vw;
       width: 92%;
@@ -234,7 +213,6 @@ html, body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #232323;
     }
     .big-section-box .section-title {
       font-size: 2.25rem;
@@ -260,7 +238,7 @@ html, body {
     .om-mig-box, .mapping-box {
       background: var(--card-bg);
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 2px 24px #b6c7b414;
       margin: 2.4vw auto 3vw auto;
       padding: 3vw 4vw 2.5vw 4vw;
       width: 92%;
@@ -269,7 +247,6 @@ html, body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #232323;
     }
     .om-mig-box {
       padding-bottom: 2vw;
@@ -277,7 +254,7 @@ html, body {
     .om-mig-title {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--title-green);
       margin-top: 0;
       margin-bottom: 0.8rem;
       text-align: center;
@@ -298,8 +275,8 @@ html, body {
       width: 100%;
     }
     .stat-card {
-      background: linear-gradient(120deg, var(--accent) 56%, #f8faf7 100%);
-      color: var(--primary);
+      background: linear-gradient(120deg, var(--soft-green) 56%, #f8faf7 100%);
+      color: var(--title-green);
       border-radius: var(--border-radius);
       flex: 1 1 0px;
       min-width: 180px;
@@ -312,22 +289,22 @@ html, body {
       font-size: 2.25rem;
       box-shadow: 0 2px 12px #b6c7b412;
       justify-content: center;
-      border: 1.5px solid var(--accent);
+      border: 1.5px solid var(--soft-green);
       position: relative;
     }
     .stat-card-label {
       font-size: 1.19rem;
       font-weight: 400;
       margin-top: 9px;
-      color: var(--secondary);
+      color: var(--accent-green);
       opacity: 0.95;
       font-family: var(--font-main);
     }
     .stat-card .stat-card-bold {
       font-weight: 700;
       font-size: 1.19rem;
-      color: var(--primary);
-      font-family: 'Playfair Display', serif;
+      color: var(--title-green);
+      font-family: var(--font-title);
       margin-bottom: 2px;
     }
     .contact-lang-row {
@@ -347,7 +324,7 @@ html, body {
     .contact-title, .lang-title {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--title-green);
       margin-bottom: 1.6vw;
       margin-top: 0.7vw;
     }
@@ -360,7 +337,7 @@ html, body {
     }
     .contact-label, .lang-label {
       font-weight: 600;
-      color: var(--primary);
+      color: var(--title-green);
       margin-right: 0.5em;
       min-width: 80px;
       display: inline-block;
@@ -376,7 +353,7 @@ html, body {
     }
     hr {
       border: none;
-      border-top: 1.5px solid var(--accent);
+      border-top: 1.5px solid var(--soft-green);
       margin: 2vw 0 2vw 0;
       width: 100%;
     }
@@ -390,7 +367,7 @@ html, body {
     .mapping-headline {
       font-size: 2rem;
       font-weight: 600;
-      color: var(--primary);
+      color: var(--title-green);
       margin: 0 0 0.37em 0;
       text-align: center;
     }
@@ -423,7 +400,7 @@ html, body {
     .radar-title {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--title-green);
       margin: 1.8vw 0 1.7vw 0;
       text-align: center;
       letter-spacing: 0.03em;
@@ -446,14 +423,15 @@ html, body {
       justify-content: flex-start;
       margin-top: 2.3em;
     }
+    /* NEW LEGEND STYLES */
     .mapping-legendbox {
       background: #fff;
       border-radius: 14px;
       margin: 0;
       padding: 1.5em 2em 1.1em 2em;
       box-shadow: 0 2px 10px #b6c7b410;
-      color: var(--primary);
-      border: 1.5px solid var(--accent);
+      color: var(--title-green);
+      border: 1.5px solid var(--soft-green);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -479,8 +457,8 @@ html, body {
       margin: 0 6px 0 0;
       vertical-align: middle;
     }
-    .legend-dark { background: #294231; }
-    .legend-light { background: #99c9c2; }
+    .legend-dark { background: var(--legend-dark); }
+    .legend-light { background: var(--legend-light); }
     .mapping-niveau {
       display: flex;
       flex-direction: column;
@@ -512,10 +490,10 @@ html, body {
       max-width: 99vw;
     }
     .mapping-detail-card {
-      background: linear-gradient(120deg, var(--accent) 98%, #f4f7ef 100%);
+      background: linear-gradient(120deg, var(--soft-green) 98%, #f4f7ef 100%);
       border-radius: 20px;
       box-shadow: 0 2px 24px #b6c7b433;
-      color: var(--primary);
+      color: var(--title-green);
       padding: 2.2rem 2.2rem 2.1rem 2.2rem;
       margin-bottom: 0.7vw;
       min-height: 200px;
@@ -524,7 +502,7 @@ html, body {
       justify-content: center;
       font-size: 1.15rem;
       font-weight: 400;
-      border: 1.5px solid var(--accent);
+      border: 1.5px solid var(--soft-green);
       overflow: visible !important;
       max-width: none !important;
       word-break: normal;
@@ -533,7 +511,7 @@ html, body {
     .mapping-detail-title { font-size: 1.26rem; font-weight: 700; margin-bottom: 0.7rem; }
     .mapping-detail-prolevel {
       background: #fff;
-      color: var(--primary);
+      color: var(--title-green);
       font-size: 0.95rem;
       font-weight: 700;
       border-radius: 15px;
@@ -542,21 +520,21 @@ html, body {
       margin-left: 10px;
       vertical-align: middle;
       letter-spacing: 0.04em;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--soft-green);
     }
     .mapping-detail-desc { font-size: 1.08rem; margin-bottom: 1.1rem;}
     .competency-section {
-      background: var(--accent);
+      background: var(--soft-green);
       border-radius: 13px;
       padding: 13px 14px;
       margin-bottom: 10px;
-      color: var(--primary);
+      color: var(--title-green);
       font-size: 1.07rem;
     }
     .competency-section h4 {
       margin: 0 0 5px 0;
       font-size: 1.05rem;
-      color: var(--primary);
+      color: var(--title-green);
       font-weight: 700;
     }
     .competency-section p {
@@ -568,13 +546,13 @@ html, body {
     .section-title {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--title-green);
       margin-top: 0;
       margin-bottom: 1.35rem;
       text-align: center;
     }
     .profile-description {
-      color: #294231;
+      color: var(--text-dark);
       margin-bottom: 1.5rem;
       font-size: 1.15rem;
       line-height: 1.62;
@@ -601,7 +579,7 @@ html, body {
       margin-bottom: 0;
       padding: 0.6rem 2rem 0.6rem 1.6rem;
       box-shadow: 0 1px 8px #b6c7b110;
-      border: 1.5px solid var(--accent);
+      border: 1.5px solid var(--soft-green);
       width: 100%;
       max-width: 680px;
       margin-left: auto;
@@ -610,7 +588,6 @@ html, body {
       cursor: pointer;
       transition: box-shadow 0.18s, transform 0.16s;
       position: relative;
-      color: #232323 !important;
     }
     .experience-item.active, .experience-item:active {
       box-shadow: 0 6px 26px #7e9c8577;
@@ -621,7 +598,7 @@ html, body {
       background: none;
       padding: 0.8rem 0;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--title-green);
       font-size: 1.1rem;
       cursor: pointer;
       position: relative;
@@ -635,7 +612,7 @@ html, body {
       right: 4px;
       top: 1.2rem;
       font-size: 0.8rem;
-      color: #99c9c2;
+      color: #a3b3a8;
       font-weight: 400;
     }
     .experience-title { font-weight: 700; font-size: 1.13rem; margin-bottom: 0; }
@@ -643,46 +620,48 @@ html, body {
     .experience-details {
       padding: 0.5rem 0 1.1rem 0;
       background: #f8faf7;
-      border-top: 1px solid var(--accent);
+      border-top: 1px solid var(--soft-green);
       display: none;
       font-weight: 400;
       animation: fadeInUp 0.3s;
       margin-top: 1rem;
-      color: #232323 !important;
     }
     .experience-details.active {
       display: block;
     }
     .skills-grid { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 9px;}
-    .skill-tag { background: var(--primary); color: #fff; border-radius: 9px; padding: 3px 8px; font-size: 0.98rem;}
+    .skill-tag { background: var(--accent-green); color: #fff; border-radius: 9px; padding: 3px 8px; font-size: 0.98rem;}
     .motivation-text { padding: 2.1rem 2rem 2.1rem 1.6rem; font-size: 1.13rem; text-align: center; }
+    /* MOBILE STYLES */
     @media (max-width: 1100px) {
-      .big-section-box, .om-mig-box, .mapping-box {
-        background: var(--card-bg);
-        border-radius: 0;
-        box-shadow: 0 6px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.06);
-        border: 1.5px solid var(--secondary);
-        padding: 3vw 4vw 2vw 4vw;
-        margin: 2vw auto 3vw auto;
-        max-width: 900px;
-        min-width: 300px;
-        transition: box-shadow 0.18s, transform 0.14s;
-      }
-      .big-section-box:hover, .om-mig-box:hover, .mapping-box:hover {
-        box-shadow: 0 12px 40px rgba(58,143,231,0.13), 0 2px 8px rgba(58,143,231,0.09);
-        transform: scale(1.012);
-      }
-      .section-title, .radar-title, .om-mig-title, .mapping-headline {
-        color: var(--primary);
-      }
-      .menu a {
-        color: var(--primary);
-      }
-      .menu a.active, .menu a:hover {
-        background: var(--highlight);
-        color: var(--text-dark);
-      }
-    }
+ .big-section-box,
+.om-mig-box,
+.mapping-box {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1.5px solid var(--accent);
+  padding: 3vw 4vw 2vw 4vw;
+  margin: 2vw auto 3vw auto;
+  max-width: 900px;
+  min-width: 300px;
+  transition: box-shadow 0.18s, transform 0.14s;
+}
+.big-section-box:hover, .om-mig-box:hover, .mapping-box:hover {
+  box-shadow: 0 12px 40px rgba(58,143,231,0.13), 0 2px 8px rgba(58,143,231,0.09);
+  transform: scale(1.012);
+}
+.section-title, .radar-title, .om-mig-title, .mapping-headline {
+  color: var(--primary);
+}
+.menu a {
+  color: var(--primary);
+}
+.menu a.active, .menu a:hover {
+  background: var(--highlight);
+  color: var(--text-dark);
+}
     @media (max-width: 700px) {
       .sidebar {
         flex-direction: column;
@@ -734,8 +713,8 @@ html, body {
         transform: none;
       }
       .menu a.active, .menu a:hover {
-        background: var(--accent);
-        color: var(--primary);
+        background: var(--soft-green);
+        color: var(--accent-green);
         opacity: 1;
         border-radius: 0;
         transform: none;
@@ -748,7 +727,6 @@ html, body {
       .big-section-box,
       .om-mig-box,
       .mapping-box {
-        background: var(--card-bg-mobile);
         padding: 4vw 2vw;
         min-width: 0;
         width: 98vw;
