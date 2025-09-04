@@ -16,41 +16,6 @@
   --highlight: #FFE394;       /* Sunny highlight for buttons or details */
   --border-radius: 0;         /* Crisp, modern cards */
 }
-/* --- GLASSMORPHISM + VIDEO BG --- */
-.frontpage-video-wrap {
-  position: fixed;
-  left: 0; top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  overflow: hidden;
-}
-.front-video {
-  position: absolute;
-  left: 0; top: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 1;
-  filter: brightness(0.93) saturate(1.12);
-}
-.glass-overlay {
-  position: absolute;
-  left: 0; top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 40px rgba(40, 60, 74, 0.13);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.18);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-width: 100vw;
-}
-/* --- END GLASSMORPHISM --- */
  html, body {
   margin: 0;
   padding: 0;
@@ -69,8 +34,6 @@
       min-height: 100vh;
       width: 100vw;
       background: var(--box-bg);
-      z-index: 3;
-      position: relative;
     }
     .sidebar {
       position: fixed;
@@ -555,7 +518,12 @@
     }
     .profile-description {
       color: var(--text-dark);
-      margin-bottom
+      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
+      line-height: 1.62;
+      max-width: 900px;
+      text-align: center;
+    }
     .centered-content {
       width: 100%;
       display: flex;
@@ -1290,4 +1258,3 @@
   </script>
 </body>
 </html>
-
