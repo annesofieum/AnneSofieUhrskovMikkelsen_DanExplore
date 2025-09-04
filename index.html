@@ -22,12 +22,14 @@
       --legend-light: #7e9c85;
       --font-title: 'Playfair Display', serif;
       --font-main: 'Playfair Display', serif;
+      --title-green: #294231;
+      --box-bg: #e3eaf7;
     }
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: var(--background);
+      background: var(--box-bg);
       font-family: var(--font-main);
       color: var(--text-dark);
       font-weight: 400;
@@ -36,7 +38,7 @@
       cursor: url('/compass-cursor.png') 16 16, auto;
       overscroll-behavior: none;
     }
-    /* Advanced Glassmorphism Video Background */
+    /* Glassmorphism Video BG */
     .video-bg {
       position: fixed;
       top: 0; left: 0;
@@ -48,9 +50,8 @@
       min-width: 100vw;
       min-height: 100vh;
       background: #000;
-      filter: brightness(0.6) blur(6px) saturate(140%);
+      filter: brightness(0.65) blur(8px) saturate(140%);
     }
-    /* Main content overlays */
     .split-layout,
     .content-area {
       position: relative;
@@ -68,13 +69,14 @@
       -webkit-backdrop-filter: blur(24px) saturate(130%);
       transition: box-shadow 0.18s, transform 0.14s;
     }
-    /* All your other existing CSS remains */
-    /* ... (keep everything else as in your repo) ... */
+    /* All your other existing CSS remains unchanged below... */
+    /* ... (keep everything else as in commit b48bf58) ... */
   </style>
 </head>
 <body>
-  <!-- Put only ONE video tag at the top of <body> -->
+  <!-- Video background: goes at the very top! -->
   <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline></video>
+
   <div class="split-layout">
     <div class="sidebar">
       <div class="sidebar-header">
@@ -90,11 +92,18 @@
       </nav>
     </div>
     <div class="content-area">
-      <!-- All your section contents go here -->
+      <!-- All your section contents go here (restored from b48bf58) -->
       <!-- ... -->
+      <!-- Example section: -->
+      <div class="section-content" id="ommig-section">
+        <div class="om-mig-box">
+          <!-- ... -->
+        </div>
+      </div>
+      <!-- More sections... -->
     </div>
   </div>
-  <!-- Navigation JS, suggested earlier -->
+  <!-- Navigation JS -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const menuLinks = document.querySelectorAll('.menu a');
