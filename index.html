@@ -6,15 +6,21 @@
   <title>Anne Sofie Uhrskov Mikkelsen</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-:root {
-  --background: #F7F9FC;      /* Soft sky white */
-  --primary: #3A8FE7;         /* Clear sky blue */
-  --secondary: #EFD9B4;       /* Straw beige */
-  --accent: #F5E8C5;          /* Pale golden sand */
-  --card-bg: #FDF6EC;         /* Sun-bleached white */
-  --text-dark: #283C4A;       /* Deep blue-grey for contrast */
-  --highlight: #FFE394;       /* Sunny highlight for buttons or details */
-  --border-radius: 0;         /* Crisp, modern cards */
+ --background: #e3eaf7;           /* Soft frosted blue */
+  --primary: #3A8FE7;              /* Branded blue */
+  --secondary: #EFD9B4;            /* Warm beige */
+  --accent: #F5E8C5;               /* Sand */
+  --card-bg: rgba(255,255,255,0.18); /* Glass card */
+  --text-dark: #2C3E50;            /* Dark blue-grey */
+  --highlight: #B8FFF4;            /* Light blue highlight */
+  --border-radius: 24px;
+  --glass-blur: blur(16px);
+  --soft-green: #d3e1be;
+  --accent-green: #294231;
+  --legend-dark: #294231;
+  --legend-light: #7e9c85;
+  --font-title: 'Playfair Display', serif;
+  --font-main: 'Playfair Display', serif;
 }
  html, body {
   margin: 0;
@@ -29,6 +35,19 @@
   cursor: url('/compass-cursor.png') 16 16, auto;
   overscroll-behavior: none;
     }
+    /* Video BG */
+.video-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: #000;
+}
     .split-layout {
       display: flex;
       min-height: 100vh;
@@ -767,17 +786,9 @@
         <a href="#" data-section="motivation">Eventyrlyst</a>
       </nav>
     </div>
-    <div class="content-area">
-      <!-- Forside -->
-   <video
-  src="profile-video.mp4"
-  class="front-image"
-  id="frontimg"
-  autoplay
-  loop
-  muted
-  playsinline
-  style="object-fit: cover; width: 100vw; height: 110vh; min-height: 950px; display: block; border-radius: 0;"
+     <!-- Video background: goes at the very top! -->
+  <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline></video>
+  <div class="content-area">
 ></video>
       <!-- Om Mig -->
       <div class="section-content" id="ommig-section">
@@ -1258,3 +1269,4 @@
   </script>
 </body>
 </html>
+
