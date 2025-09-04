@@ -601,18 +601,21 @@
     .motivation-text { padding: 2.1rem 2rem 2.1rem 1.6rem; font-size: 1.13rem; text-align: center; }
     /* MOBILE STYLES */
     @media (max-width: 1100px) {
-      .section-content,.big-section-box,.om-mig-box,.mapping-box { max-width: 99vw; padding: 2vw 2vw;}
-      .sidebar { width: 100vw; min-width: 0; padding: 0 0 0 12px; box-shadow: 0 2px 8px #dbeada1a;}
-      .split-layout { flex-direction: column; }
-      .content-area { min-height: 45vh; }
-      .front-image { max-width: 98vw; min-height: 60vh; }
-      .mapping-flex { flex-direction: column; }
-      .mapping-left,.mapping-right { max-width: 100vw; min-width: unset; padding:0; }
-      #skillChart { width: 100vw !important; min-width: 180px; height: 220px !important;}
-      .big-section-box { min-width: 0; }
-      .sidebar-header { height: auto; min-height: 90px; }
-      .name-title { font-size: 2.1rem; }
-    }
+     .big-section-box, .om-mig-box, .mapping-box {
+  background: linear-gradient(135deg, #f6f8fa 82%, #e6ecf5 100%);
+  border-radius: 0;
+  box-shadow: 0 6px 32px rgba(56,103,214,0.08), 0 1px 4px rgba(56,103,214,0.06);
+  border: 1.5px solid #e3eafc;
+  padding: 3vw 4vw 2vw 4vw;
+  margin: 2vw auto 3vw auto;
+  max-width: 900px;
+  min-width: 300px;
+  transition: box-shadow 0.18s, transform 0.14s;
+}
+.big-section-box:hover, .om-mig-box:hover, .mapping-box:hover {
+  box-shadow: 0 12px 40px rgba(56,103,214,0.13), 0 2px 8px rgba(56,103,214,0.09);
+  transform: scale(1.012);
+}
     @media (max-width: 700px) {
       .sidebar {
         flex-direction: column;
@@ -1247,6 +1250,7 @@
   </script>
 </body>
 </html>
+
 
 
 
