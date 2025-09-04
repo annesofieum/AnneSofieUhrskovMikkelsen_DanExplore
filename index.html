@@ -7,17 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
-  --background: #f6f8fa;
-  --primary: #3867d6;
-  --secondary: #47cacc;
-  --highlight: #ffe066;
-  --text-dark: #222e3a;
-  --sidebar-bg: #ffffff;
-  --card-bg: #ebf2fb;
-  --border-radius: 0; /* squared edges! */
-  --font-main: 'Playfair Display', serif;
-  --font-title: 'Playfair Display', serif;
-    }
+  --background: #F7F9FC;      /* Soft sky white */
+  --primary: #3A8FE7;         /* Clear sky blue */
+  --secondary: #EFD9B4;       /* Straw beige */
+  --accent: #F5E8C5;          /* Pale golden sand */
+  --card-bg: #FDF6EC;         /* Sun-bleached white */
+  --text-dark: #283C4A;       /* Deep blue-grey for contrast */
+  --highlight: #FFE394;       /* Sunny highlight for buttons or details */
+  --border-radius: 0;         /* Crisp, modern cards */
+}
  html, body {
   margin: 0;
   padding: 0;
@@ -601,11 +599,11 @@
     .motivation-text { padding: 2.1rem 2rem 2.1rem 1.6rem; font-size: 1.13rem; text-align: center; }
     /* MOBILE STYLES */
     @media (max-width: 1100px) {
-     .big-section-box, .om-mig-box, .mapping-box {
-  background: linear-gradient(135deg, #f6f8fa 82%, #e6ecf5 100%);
+   .big-section-box, .om-mig-box, .mapping-box {
+  background: var(--card-bg);
   border-radius: 0;
-  box-shadow: 0 6px 32px rgba(56,103,214,0.08), 0 1px 4px rgba(56,103,214,0.06);
-  border: 1.5px solid #e3eafc;
+  box-shadow: 0 6px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.06);
+  border: 1.5px solid var(--secondary);
   padding: 3vw 4vw 2vw 4vw;
   margin: 2vw auto 3vw auto;
   max-width: 900px;
@@ -613,8 +611,18 @@
   transition: box-shadow 0.18s, transform 0.14s;
 }
 .big-section-box:hover, .om-mig-box:hover, .mapping-box:hover {
-  box-shadow: 0 12px 40px rgba(56,103,214,0.13), 0 2px 8px rgba(56,103,214,0.09);
+  box-shadow: 0 12px 40px rgba(58,143,231,0.13), 0 2px 8px rgba(58,143,231,0.09);
   transform: scale(1.012);
+}
+.section-title, .radar-title, .om-mig-title, .mapping-headline {
+  color: var(--primary);
+}
+.menu a {
+  color: var(--primary);
+}
+.menu a.active, .menu a:hover {
+  background: var(--highlight);
+  color: var(--text-dark);
 }
     @media (max-width: 700px) {
       .sidebar {
@@ -1250,6 +1258,7 @@
   </script>
 </body>
 </html>
+
 
 
 
