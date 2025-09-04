@@ -23,6 +23,7 @@
   --legend-light: #7e9c85;
   --font-title: 'Playfair Display', serif;
   --font-main: 'Playfair Display', serif;
+  --title-green: #294231;
 }
  html, body {
   margin: 0;
@@ -79,7 +80,6 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
     .name-title {
       font-size: 2.5rem;
       font-weight: 600;
-      --title-green: #294231;
       letter-spacing: 0.02em;
       line-height: 1.12;
       white-space: pre-line;
@@ -693,8 +693,6 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
       .content-area {
         margin-left: 0;
         margin-top: 0;
-        <div class="section-content" id="front-section">
-</div>
       }
       .big-section-box,
       .om-mig-box,
@@ -1042,12 +1040,9 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
     </div>
   </div>
   <script>
-        }
+        </script>
       });
     });
-    document.getElementById('frontimg').style.display = "block";
-    document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
-
     function closeAllExpDetails() {
       document.querySelectorAll('.experience-details').forEach(function(details) {
         details.classList.remove('active');
@@ -1239,10 +1234,6 @@ box-shadow: 0 8px 32px rgba(58,143,231,0.08), 0 1px 4px rgba(58,143,231,0.07);
     }
     if (document.getElementById('skillChart')) drawRadarChart();
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuLinks = document.querySelectorAll('.menu a');
-    const sections = document.querySelectorAll('.section-content');
-    
     menuLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
