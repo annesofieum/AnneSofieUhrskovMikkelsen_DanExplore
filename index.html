@@ -38,7 +38,8 @@
     /* Video BG */
 .video-bg {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
@@ -47,6 +48,7 @@
   min-width: 100vw;
   min-height: 100vh;
   background: #000;
+  filter: brightness(0.6) blur(6px) saturate(140%);
 }
     .split-layout {
       display: flex;
@@ -142,6 +144,11 @@
       justify-content: center;
       position: relative;
       z-index: 2;
+      .split-layout,
+.content-area {
+  position: relative;
+  z-index: 2;
+}
       overflow: auto;
       margin-left: 340px;
     }
@@ -275,6 +282,11 @@
       justify-content: center;
       border: 1.5px solid var(--soft-green);
       position: relative;
+      .split-layout,
+.content-area {
+  position: relative;
+  z-index: 2;
+}
     }
     .stat-card-label {
       font-size: 1.19rem;
@@ -771,8 +783,9 @@
     }
   </style>
 </head>
-  <video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline></video>
-<body>
+<video src="profile-video.mp4" class="video-bg" autoplay loop muted playsinline>
+</video>
+  <body>
   <div class="split-layout">
     <div class="sidebar">
       <div class="sidebar-header">
