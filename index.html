@@ -21,6 +21,7 @@
   --box-shadow: 0 6px 32px rgba(33,122,126,0.10), 0 1px 4px rgba(33,122,126,0.08);
 }
 
+/* --- New video background and overlay styles --- */
 .bg-video-container {
   position: fixed;
   top: 0; left: 0;
@@ -734,6 +735,7 @@ hr {
     padding: 1.1em 1.2em 1em 1.2em;
   }
 }
+/* General centering helpers */
 .centered-content,
 .profile-description {
   margin-left: auto;
@@ -742,9 +744,19 @@ hr {
   width: 100%;
   max-width: 900px;
 }
+/* Motivation-specific fix: override inline style */
 #motivation-section .profile-description {
   max-width: 900px !important;
   text-align: center !important;
+}
+/* Left-align for certain sections */
+#erfaring-section .profile-description,
+#uddannelse-section .profile-description,
+#motivation-section .profile-description,
+#erfaring-section .experience-list,
+#uddannelse-section .experience-list {
+  text-align: left !important;
+  align-items: flex-start !important;
 }
   </style>
 </head>
@@ -761,7 +773,6 @@ hr {
     ></video>
     <div class="bg-overlay"></div>
   </div>
-
   <div class="split-layout">
     <div class="sidebar">
       <div class="sidebar-header">
@@ -777,17 +788,8 @@ hr {
       </nav>
     </div>
     <div class="content-area">
-      <!-- Forside -->
-      <div class="section-content" id="front-section">
-        <div class="big-section-box">
-          <div class="section-title">Velkommen</div>
-          <div class="profile-description">
-            <p>Hej – og velkommen til mit interaktive CV!<br>
-            Klik dig rundt i menuen for at lære mig bedre at kende.<br>
-            <em>Anne Sofie Uhrskov Mikkelsen</em></p>
-          </div>
-        </div>
-      </div>
+      <!-- Forside (blank as requested) -->
+      <div class="section-content" id="front-section"></div>
       <!-- Om Mig -->
       <div class="section-content" id="ommig-section">
         <div class="om-mig-box">
@@ -841,7 +843,7 @@ hr {
           </div>
         </div>
       </div>
-            <!-- Kompetencer -->
+      <!-- Kompetencer -->
       <div class="section-content" id="kompetencer-section">
         <div class="mapping-box">
           <div class="mapping-headline">Kompetence Mapping</div>
