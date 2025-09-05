@@ -272,6 +272,39 @@ hr {
 .contact-col, .lang-col {
   flex: 1 1 0;
 }
+
+.contact-col {
+  min-width: 240px;
+  max-width: 340px;
+  padding-right: 20px;
+}
+
+.contact-item, .address-row {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+
+.contact-label {
+  min-width: 90px;
+  display: inline-block;
+}
+
+@media (max-width: 700px) {
+  .contact-col {
+    max-width: 100vw;
+    min-width: 0;
+    padding-right: 0;
+  }
+  .contact-item, .address-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contact-label, .contact-value {
+    display: block;
+    min-width: 0;
+  }
+}
 .contact-title, .lang-title {
   font-size: 1.28rem;
   font-weight: 600;
