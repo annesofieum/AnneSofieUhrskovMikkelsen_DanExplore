@@ -20,7 +20,6 @@
   --border-radius: 22px;
   --box-shadow: 0 6px 32px rgba(33,122,126,0.10), 0 1px 4px rgba(33,122,126,0.08);
 }
-
 /* --- Video background and overlay styles --- */
 .bg-video-container {
   position: fixed;
@@ -282,15 +281,17 @@ hr {
   align-items: baseline;
   margin-bottom: 10px;
   line-height: 1.5;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent line break! */
 }
 .contact-label {
   min-width: 90px;
   display: inline-block;
+  white-space: nowrap;
 }
 .contact-value {
-  display: inline;
-  margin-left: 4px;
+  display: inline-block;
+  margin-left: 8px;
+  white-space: nowrap;
 }
 .contact-title, .lang-title {
   font-size: 1.28rem;
@@ -326,10 +327,12 @@ hr {
   .contact-item, .address-row {
     flex-direction: row;
     align-items: baseline;
+    flex-wrap: nowrap;
   }
   .contact-label, .contact-value {
-    display: inline;
+    display: inline-block;
     min-width: 0;
+    white-space: nowrap;
   }
 }
 /* Rest of CSS unchanged... */
