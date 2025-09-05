@@ -7,19 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
-  --background: #eaf6fa;                 /* Soft light blue */
-  --primary: #217a7e;                    /* Deep teal */
-  --secondary: #99c9c2;                  /* Light pastel teal */
-  --accent: #cde8df;                     /* Soft mint */
-  --card-bg: rgba(255,255,255,0.80);     /* Glass white for boxes */
-  --card-bg-mobile: rgba(255,255,255,0.65); /* Glass white for mobile */
-  --text-dark: #294231;                  /* Slate/dark teal for text */
-  --highlight: #b7e6ff;                  /* Soft blue highlight */
-  --border-radius: 22px;                 /* Soft rounded boxes */
+  --background: #eaf6fa;
+  --primary: #217a7e;
+  --secondary: #99c9c2;
+  --accent: #cde8df;
+  --soft-green: #cde8df;
+  --title-green: #294231;
+  --card-bg: rgba(255,255,255,0.80);
+  --card-bg-mobile: rgba(255,255,255,0.65);
+  --text-dark: #294231;
+  --highlight: #b7e6ff;
+  --border-radius: 22px;
   --box-shadow: 0 6px 32px rgba(33,122,126,0.10), 0 1px 4px rgba(33,122,126,0.08);
 }
 
-/* --- New video background and overlay styles --- */
 .bg-video-container {
   position: fixed;
   top: 0; left: 0;
@@ -50,7 +51,6 @@
   backdrop-filter: blur(4px) saturate(115%);
   transition: background 0.3s, backdrop-filter 0.3s;
 }
-
 body.with-overlay .bg-overlay {
   background: rgba(234,246,250,0.22);
   backdrop-filter: blur(12px) saturate(120%);
@@ -58,7 +58,6 @@ body.with-overlay .bg-overlay {
 body.with-overlay .bg-video {
   filter: blur(9px);
 }
-
 html, body {
   margin: 0;
   padding: 0;
@@ -72,8 +71,6 @@ html, body {
   cursor: url('/compass-cursor.png') 16 16, auto;
   overscroll-behavior: none;
 }
-
-/* Layout */
 .split-layout {
   display: flex;
   min-height: 100vh;
@@ -176,8 +173,6 @@ html, body {
 .front-image {
   display: none;
 }
-
-/* CONSISTENT CENTERING AND BOX WIDTHS */
 .section-content {
   display: none;
   width: 100%;
@@ -216,7 +211,6 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
-
 /* OM MIG */
 .om-mig-title {
   font-size: 2.2rem;
@@ -310,7 +304,6 @@ hr {
   margin: 2vw 0 2vw 0;
   width: 100%;
 }
-
 /* KOMPETENCER/MAPPING */
 .mapping-headline {
   font-size: 2rem;
@@ -371,7 +364,6 @@ hr {
   justify-content: flex-start;
   margin-top: 2.3em;
 }
-/* NEW LEGEND STYLES */
 .mapping-legendbox {
   background: #fff;
   border-radius: 14px;
@@ -491,8 +483,6 @@ hr {
   color: #294231;
   font-weight: 400;
 }
-
-/* Erfaring/Uddannelse/Other Sections */
 .section-title {
   font-size: 2rem;
   font-weight: 700;
@@ -581,15 +571,13 @@ hr {
 }
 .skills-grid { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 9px;}
 .skill-tag {
-  background: #217a7e;   
+  background: #217a7e;
   color: #fff;
   border-radius: 9px;
   padding: 3px 8px;
   font-size: 0.98rem;
 }
 .motivation-text { padding: 2.1rem 2rem 2.1rem 1.6rem; font-size: 1.13rem; text-align: center; }
-
-/* MOBILE STYLES */
 @media (max-width: 1100px) {
   .big-section-box,
   .om-mig-box,
@@ -620,7 +608,6 @@ hr {
     color: var(--text-dark);
   }
 }
-
 @media (max-width: 700px) {
   .sidebar {
     flex-direction: column;
@@ -731,7 +718,7 @@ hr {
   .profile-description {
     font-size: 1rem !important;
   }
-   .experience-title,
+  .experience-title,
   .experience-company {
     font-size: 1rem !important;
   }
@@ -740,15 +727,13 @@ hr {
     height: auto;
     max-width: 100vw;
     object-fit: cover;
-  } /* <-- This closes .front-image */
+  }
   .mapping-legendbox {
     min-width: 0;
     max-width: 100vw;
     padding: 1.1em 1.2em 1em 1.2em;
   }
-} /* <-- This closes your @media (max-width: 700px) block */
-
-/* Place your centering helpers here: */
+}
 .centered-content,
 .profile-description {
   margin-left: auto;
@@ -757,15 +742,13 @@ hr {
   width: 100%;
   max-width: 900px;
 }
-
-/* Motivation-specific fix: override inline style */
 #motivation-section .profile-description {
   max-width: 900px !important;
   text-align: center !important;
 }
-  </head>
+  </style>
+</head>
 <body>
-  <!-- Background Video and Overlay -->
   <div class="bg-video-container">
     <video
       src="profile-video.mp4"
@@ -795,7 +778,16 @@ hr {
     </div>
     <div class="content-area">
       <!-- Forside -->
-      <!-- (front-image video removed, now handled by background) -->
+      <div class="section-content" id="front-section">
+        <div class="big-section-box">
+          <div class="section-title">Velkommen</div>
+          <div class="profile-description">
+            <p>Hej – og velkommen til mit interaktive CV!<br>
+            Klik dig rundt i menuen for at lære mig bedre at kende.<br>
+            <em>Anne Sofie Uhrskov Mikkelsen</em></p>
+          </div>
+        </div>
+      </div>
       <!-- Om Mig -->
       <div class="section-content" id="ommig-section">
         <div class="om-mig-box">
@@ -849,7 +841,7 @@ hr {
           </div>
         </div>
       </div>
-      <!-- Kompetencer -->
+            <!-- Kompetencer -->
       <div class="section-content" id="kompetencer-section">
         <div class="mapping-box">
           <div class="mapping-headline">Kompetence Mapping</div>
@@ -861,7 +853,6 @@ hr {
               <div class="radar-title">Kompetence Radar</div>
               <svg id="skillChart"></svg>
               <div class="radar-legend-wrap">
-                <!-- NEW LEGEND LAYOUT -->
                 <div class="mapping-legendbox">
                   <div class="legend">
                     <span class="legend-color legend-dark"></span>
@@ -891,122 +882,115 @@ hr {
           </div>
         </div>
       </div>
-   <div class="section-content" id="erfaring-section">
-  <div class="big-section-box">
-    <div class="section-title">Relevant Erfaring</div>
-    <div class="profile-description">
-      Min professionelle baggrund og hvordan disse erfaringer oversættes til jobbet som Content Magiker hos DanExplore.
-    </div>
-    <div class="centered-content">
-      <div class="experience-list">
-        <!-- Experience 1 -->
-        <div class="experience-item" onclick="toggleExperience('adjutant')" id="adjutant-item">
-          <div class="experience-header">
-            <div class="experience-title">Marketplace Manager</div>
-            <div class="experience-company">Adjutant (Marts 2022 – November 2024) • Høj relevans</div>
+      <!-- Erfaring -->
+      <div class="section-content" id="erfaring-section">
+        <div class="big-section-box">
+          <div class="section-title">Relevant Erfaring</div>
+          <div class="profile-description">
+            Min professionelle baggrund og hvordan disse erfaringer oversættes til jobbet som Content Magiker hos DanExplore.
           </div>
-          <div id="adjutant-details" class="experience-details">
-            <div class="skills-grid">
-              <div class="skill-tag">Projektkoordination</div>
-              <div class="skill-tag">Team Ledelse</div>
-              <div class="skill-tag">Performance Tracking</div>
-              <div class="skill-tag">Tværfagligt Samarbejde</div>
-              <div class="skill-tag">Visuel kommunikation</div>
-            </div>
-            <div class="skills-grid" style="margin-bottom: 10px;">
-              <span class="skill-tag" style="background:#d1e7f7;color:#294231;">PowerBI</span>
-              <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
-            </div>
-            <ul>
-              <li>Koordinerede back-office og daily operations for 50+ brands</li>
-              <li>Analyserede salgsdata og markedstendenser til at hjælpe med strategiske beslutninger</li>
-              <li>Opdaterede brand homes på Zalando for at sikre god visuel kommunikation og engagement</li>
-              <li>Ledede og trænede studentermedhjælper mens jeg beholdt overblikket over alle brand operationer</li>
-            </ul>
-            <p><strong>Case:</strong> Med over 50 brands i porteføljen var det afgørende for mig at skabe struktur, så jeg kunne bevare overblikket – ikke bare over egne opgaver, men også for teamet. Jeg udviklede systemer til opgavestyring, der sikrede, at alle deadlines blev overholdt, og at intet blev overset. Det gav mig ikke kun ro til at løse mine egne opgaver effektivt, men gjorde det også muligt at oplære og støtte vores studentermedhjælper i hendes udvikling. Hun blev hurtigt selvkørende, og vi fik både mere kvalitet og mindre stress i teamet.</p>
-          </div>
-        </div>
-
-        <!-- Experience 2 -->
-        <div class="experience-item" onclick="toggleExperience('sofie')" id="sofie-item">
-          <div class="experience-header">
-            <div class="experience-title">Kreativ Medarbejder</div>
-            <div class="experience-company">Sofie Ladefoged (Januar 2022 – Marts 2022) • Medium relevans</div>
-          </div>
-          <div id="sofie-details" class="experience-details">
-            <div class="skills-grid">
-              <div class="skill-tag">Content Creation</div>
-              <div class="skill-tag">Brand Communication</div>
-              <div class="skill-tag">Storytelling</div>
-            </div>
-            <div class="skills-grid" style="margin-bottom: 10px;">
-              <span class="skill-tag" style="background:#d1e7f7;color:#294231;">Adobe</span>
-              <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Later</span>
-              <span class="skill-tag" style="background:#d1f7e7;color:#294231;">Wordpress</span>
-              <span class="skill-tag" style="background:#f7d1e5;color:#294231;">Klaviyo</span>
-              <span class="skill-tag" style="background:#f7f3d1;color:#294231;">Meta introduktion</span>
-            </div>
-            <ul>
-              <li>Udviklede indhold og nyhedsbreve med fokus på bæredygtige produkter</li>
-              <li>Arbejdede med storytelling og kommunikation på SOME kanaler</li>
-              <li>Bidrog til brandets visuelle udtryk og marketingmaterialer</li>
-            </ul>
-            <p><strong>Case:</strong> Jeg fik ansvaret for at udvikle e-mailmarketing via Klaviyo, hvilket startede med et opstartsmøde med Klaviyos eget team for at forstå mulighederne i platformen. Derefter udarbejdede jeg en konkret strategi og stod for både opsætning af flows, contentplan og copywriting. Resultatet var et mere struktureret og engagerende nyhedsbrev, hvor vi tydeligt kunne se en stigning i både åbningsrater og klik fra modtagerne.</p>
-          </div>
-        </div>
-
-        <!-- Experience 3 -->
-        <div class="experience-item" onclick="toggleExperience('salling')" id="salling-item">
-          <div class="experience-header">
-            <div class="experience-title">Indkøbspraktikant</div>
-            <div class="experience-company">Salling Group (August 2020 – December 2020) • Medium relevans</div>
-          </div>
-          <div id="salling-details" class="experience-details">
-            <div class="skills-grid">
-              <div class="skill-tag">Markedsresearch</div>
-              <div class="skill-tag">Data Analyse</div>
-            </div>
-            <div class="skills-grid" style="margin-bottom: 10px;">
-              <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
-              <span class="skill-tag" style="background:#e7d1f7;color:#294231;">SAP</span>
-            </div>
-            <ul>
-              <li>Indsamlede markedsindsigter gennem dataanalyse og kundefeedback til sortimentsoptimering</li>
-              <li>Koordinerede udviklingsprojekter mellem indkøb, marketing og supply chain teams</li>
-              <li>Bookede ordre og koordinerede med logistik</li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Experience 4: Le Management -->
-        <div class="experience-item" onclick="toggleExperience('lemanagement')" id="lemanagement-item">
-          <div class="experience-header">
-            <div class="experience-title">Art Direct</div>
-            <div class="experience-company">Le Management (Marts 2016 – August 2018) • Medium relevans</div>
-          </div>
-          <div id="lemanagement-details" class="experience-details">
-            <div class="skills-grid">
-              <div class="skill-tag">Porteføljestyring</div>
-              <div class="skill-tag">Visuel Identitet</div>
-              <div class="skill-tag">Content Management</div>
-            </div>
-            <div class="skills-grid" style="margin-bottom: 10px;">
-              <span class="skill-tag" style="background:#d1f7e7;color:#294231;">Wordpress</span>
-            </div>
-            <ul>
-              <li>Backoffice for hjemmesiden og ansvar for alle udenlandske modellers porteføljer</li>
-              <li>Skabte og vedligeholdt det visuelle udtryk online for modellerne</li>
-              <li>Samarbejdede tæt med model management og IT for at optimere brugeroplevelsen</li>
-            </ul>
-            <p><strong>Case:</strong> Jeg hjalp med at opdatere modellers porteføljer og sørgede for at de havde det rette udtryk til de rette kunder.</p>
-          </div>
-        </div>
+          <div class="centered-content">
+            <div class="experience-list">
+              <div class="experience-item" onclick="toggleExperience('adjutant')" id="adjutant-item">
+                <div class="experience-header">
+                  <div class="experience-title">Marketplace Manager</div>
+                  <div class="experience-company">Adjutant (Marts 2022 – November 2024) • Høj relevans</div>
+                </div>
+                <div id="adjutant-details" class="experience-details">
+                  <div class="skills-grid">
+                    <div class="skill-tag">Projektkoordination</div>
+                    <div class="skill-tag">Team Ledelse</div>
+                    <div class="skill-tag">Performance Tracking</div>
+                    <div class="skill-tag">Tværfagligt Samarbejde</div>
+                    <div class="skill-tag">Visuel kommunikation</div>
+                  </div>
+                  <div class="skills-grid" style="margin-bottom: 10px;">
+                    <span class="skill-tag" style="background:#d1e7f7;color:#294231;">PowerBI</span>
+                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
+                  </div>
+                  <ul>
+                    <li>Koordinerede back-office og daily operations for 50+ brands</li>
+                    <li>Analyserede salgsdata og markedstendenser til at hjælpe med strategiske beslutninger</li>
+                    <li>Opdaterede brand homes på Zalando for at sikre god visuel kommunikation og engagement</li>
+                    <li>Ledede og trænede studentermedhjælper mens jeg beholdt overblikket over alle brand operationer</li>
+                  </ul>
+                  <p><strong>Case:</strong> Med over 50 brands i porteføljen var det afgørende for mig at skabe struktur, så jeg kunne bevare overblikket – ikke bare over egne opgaver, men også for teamet. Jeg udviklede systemer til opgavestyring, der sikrede, at alle deadlines blev overholdt, og at intet blev overset. Det gav mig ikke kun ro til at løse mine egne opgaver effektivt, men gjorde det også muligt at oplære og støtte vores studentermedhjælper i hendes udvikling. Hun blev hurtigt selvkørende, og vi fik både mere kvalitet og mindre stress i teamet.</p>
+                </div>
+              </div>
+              <div class="experience-item" onclick="toggleExperience('sofie')" id="sofie-item">
+                <div class="experience-header">
+                  <div class="experience-title">Kreativ Medarbejder</div>
+                  <div class="experience-company">Sofie Ladefoged (Januar 2022 – Marts 2022) • Medium relevans</div>
+                </div>
+                <div id="sofie-details" class="experience-details">
+                  <div class="skills-grid">
+                    <div class="skill-tag">Content Creation</div>
+                    <div class="skill-tag">Brand Communication</div>
+                    <div class="skill-tag">Storytelling</div>
+                  </div>
+                  <div class="skills-grid" style="margin-bottom: 10px;">
+                    <span class="skill-tag" style="background:#d1e7f7;color:#294231;">Adobe</span>
+                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Later</span>
+                    <span class="skill-tag" style="background:#d1f7e7;color:#294231;">Wordpress</span>
+                    <span class="skill-tag" style="background:#f7d1e5;color:#294231;">Klaviyo</span>
+                    <span class="skill-tag" style="background:#f7f3d1;color:#294231;">Meta introduktion</span>
+                  </div>
+                  <ul>
+                    <li>Udviklede indhold og nyhedsbreve med fokus på bæredygtige produkter</li>
+                    <li>Arbejdede med storytelling og kommunikation på SOME kanaler</li>
+                    <li>Bidrog til brandets visuelle udtryk og marketingmaterialer</li>
+                  </ul>
+                  <p><strong>Case:</strong> Jeg fik ansvaret for at udvikle e-mailmarketing via Klaviyo, hvilket startede med et opstartsmøde med Klaviyos eget team for at forstå mulighederne i platformen. Derefter udarbejdede jeg en konkret strategi og stod for både opsætning af flows, contentplan og copywriting. Resultatet var et mere struktureret og engagerende nyhedsbrev, hvor vi tydeligt kunne se en stigning i både åbningsrater og klik fra modtagerne.</p>
+                </div>
+              </div>
+              <div class="experience-item" onclick="toggleExperience('salling')" id="salling-item">
+                <div class="experience-header">
+                  <div class="experience-title">Indkøbspraktikant</div>
+                  <div class="experience-company">Salling Group (August 2020 – December 2020) • Medium relevans</div>
+                </div>
+                <div id="salling-details" class="experience-details">
+                  <div class="skills-grid">
+                    <div class="skill-tag">Markedsresearch</div>
+                    <div class="skill-tag">Data Analyse</div>
+                  </div>
+                  <div class="skills-grid" style="margin-bottom: 10px;">
+                    <span class="skill-tag" style="background:#f7ecd1;color:#294231;">Excel</span>
+                    <span class="skill-tag" style="background:#e7d1f7;color:#294231;">SAP</span>
+                  </div>
+                  <ul>
+                    <li>Indsamlede markedsindsigter gennem dataanalyse og kundefeedback til sortimentsoptimering</li>
+                    <li>Koordinerede udviklingsprojekter mellem indkøb, marketing og supply chain teams</li>
+                    <li>Bookede ordre og koordinerede med logistik</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="experience-item" onclick="toggleExperience('lemanagement')" id="lemanagement-item">
+                <div class="experience-header">
+                  <div class="experience-title">Art Direct</div>
+                  <div class="experience-company">Le Management (Marts 2016 – August 2018) • Medium relevans</div>
+                </div>
+                <div id="lemanagement-details" class="experience-details">
+                  <div class="skills-grid">
+                    <div class="skill-tag">Porteføljestyring</div>
+                    <div class="skill-tag">Visuel Identitet</div>
+                    <div class="skill-tag">Content Management</div>
+                  </div>
+                  <div class="skills-grid" style="margin-bottom: 10px;">
+                    <span class="skill-tag" style="background:#d1f7e7;color:#294231;">Wordpress</span>
+                  </div>
+                  <ul>
+                    <li>Backoffice for hjemmesiden og ansvar for alle udenlandske modellers porteføljer</li>
+                    <li>Skabte og vedligeholdt det visuelle udtryk online for modellerne</li>
+                    <li>Samarbejdede tæt med model management og IT for at optimere brugeroplevelsen</li>
+                  </ul>
+                  <p><strong>Case:</strong> Jeg hjalp med at opdatere modellers porteføljer og sørgede for at de havde det rette udtryk til de rette kunder.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-            <!-- Uddannelse -->
+      <!-- Uddannelse -->
       <div class="section-content" id="uddannelse-section">
         <div class="big-section-box">
           <div class="section-title">Uddannelse & Kurser</div>
@@ -1058,34 +1042,36 @@ hr {
         </div>
       </div>
       <!-- Motivation -->
-     <div class="section-content" id="motivation-section">
-  <div class="big-section-box">
-    <div class="section-title">Motivation</div>
-    <div class="profile-description">
-      <p><strong>“At rejse er at leve”</strong> - Er det ikke sådan man siger? Det er i hvert fald sådan jeg er vokset op. Med en mor som stewardesse gennem 35+ år har rejser altid været en del af opvæksten, og det har været absolut magisk. Det giver bare et helt andet perspektiv på hverdagen at opleve et nyt land og en anden kultur. Det virker også til, at I hos Travelheart og DanExplore har det sådan.</p>
-      <p><strong>Kreativitet som passion og personlighed</strong><br>
-      Det at være kreativ har hele mit liv været en central del af hvem jeg er. Som barn ville jeg for eksempel ikke se en tegnefilm, hvis jeg synes den var grimt tegnet (smagsdommer i en tidlig alder - Ghibli film var et stort ja, Ed, Edd og Eddy var et stort nej).<br>
-      Jeg opvejer kvalitet frem for kvantitet og ser design liggende i krydsfeltet mellem problemløsning, historiefortælling og identitet. Derfor har jeg også af ren interesse lært mig selv at bruge værktøjer som InDesign, Photoshop og SketchUp, som der flittigt bliver brugt til diverse kreative projekter herhjemme.</p>
-      <p><strong>Ønsket om noget nyt</strong><br>
-      Jeg sætter stor pris på jeres ønske om at gøre noget nyt og “ikke bare det i plejer” - det er nemlig også der jeg selv er og hvordan jeg ønsker at arbejde.<br>
-      Efter ni år i modebranchen har jeg lært, hvor vigtigt det er at holde hovedet koldt, når kalenderen er pakket, og der pludselig opstår uventede udfordringer midt i hverdagen. Jeg har haft ansvar for at holde styr på både leverancer, kollegaers oplæring og det praktiske bag kulissen – og jeg trives bedst, når jeg får tingene til at glide, selv når tempoet er højt.</p>
-      <p>Men jeg har også mærket, at jeg gerne vil arbejde et sted, hvor jeg føler, at det, jeg laver, gør en forskel og hvor jeg kan udfolde min kreativitet endnu mere. Og jeg ved, at jeg ville kunne bidrage med noget godt allerede på første dagen i jeres team.</p>
-      <p>Jeg er klar til en ny vej på min karriererejse og håber I vil hjælpe mig på vej!</p>
-      <p><strong>Tusinde tak fordi I læste med</strong></p>
+      <div class="section-content" id="motivation-section">
+        <div class="big-section-box">
+          <div class="section-title">Motivation</div>
+          <div class="profile-description">
+            <p><strong>“At rejse er at leve”</strong> - Er det ikke sådan man siger? Det er i hvert fald sådan jeg er vokset op. Med en mor som stewardesse gennem 35+ år har rejser altid været en del af opvæksten, og det har været absolut magisk. Det giver bare et helt andet perspektiv på hverdagen at opleve et nyt land og en anden kultur. Det virker også til, at I hos Travelheart og DanExplore har det sådan.</p>
+            <p><strong>Kreativitet som passion og personlighed</strong><br>
+            Det at være kreativ har hele mit liv været en central del af hvem jeg er. Som barn ville jeg for eksempel ikke se en tegnefilm, hvis jeg synes den var grimt tegnet (smagsdommer i en tidlig alder - Ghibli film var et stort ja, Ed, Edd og Eddy var et stort nej).<br>
+            Jeg opvejer kvalitet frem for kvantitet og ser design liggende i krydsfeltet mellem problemløsning, historiefortælling og identitet. Derfor har jeg også af ren interesse lært mig selv at bruge værktøjer som InDesign, Photoshop og SketchUp, som der flittigt bliver brugt til diverse kreative projekter herhjemme.</p>
+            <p><strong>Ønsket om noget nyt</strong><br>
+            Jeg sætter stor pris på jeres ønske om at gøre noget nyt og “ikke bare det i plejer” - det er nemlig også der jeg selv er og hvordan jeg ønsker at arbejde.<br>
+            Efter ni år i modebranchen har jeg lært, hvor vigtigt det er at holde hovedet koldt, når kalenderen er pakket, og der pludselig opstår uventede udfordringer midt i hverdagen. Jeg har haft ansvar for at holde styr på både leverancer, kollegaers oplæring og det praktiske bag kulissen – og jeg trives bedst, når jeg får tingene til at glide, selv når tempoet er højt.</p>
+            <p>Men jeg har også mærket, at jeg gerne vil arbejde et sted, hvor jeg føler, at det, jeg laver, gør en forskel og hvor jeg kan udfolde min kreativitet endnu mere. Og jeg ved, at jeg ville kunne bidrage med noget godt allerede på første dagen i jeres team.</p>
+            <p>Jeg er klar til en ny vej på min karriererejse og håber I vil hjælpe mig på vej!</p>
+            <p><strong>Tusinde tak fordi I læste med</strong></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-    <script>
-    // Navigation logic - add/remove overlay class
+  <script>
     function setActiveSection(section) {
       document.querySelectorAll('.menu a').forEach(l => l.classList.remove('active'));
       document.querySelectorAll('.section-content').forEach(sec => {
         sec.classList.remove('active');
         sec.style.opacity = 0;
       });
-
       if (section === "front") {
         document.body.classList.remove("with-overlay");
+        document.getElementById('front-section').classList.add('active');
+        setTimeout(() => { document.getElementById('front-section').style.opacity = 1; }, 30);
       } else {
         document.body.classList.add("with-overlay");
         let sec = document.getElementById(section + '-section');
@@ -1095,7 +1081,6 @@ hr {
         }
       }
     }
-
     document.querySelectorAll('.menu a').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1103,10 +1088,7 @@ hr {
         this.classList.add('active');
       });
     });
-
-    // Initial state: frontpage, no overlay
     setActiveSection("front");
-
     function closeAllExpDetails() {
       document.querySelectorAll('.experience-details').forEach(function(details) {
         details.classList.remove('active');
@@ -1132,50 +1114,50 @@ hr {
       }
     }
     window.toggleExperience = toggleExperience;
- var skills = [
-  {
-    name: "Storytelling & Kreativ Tekstforfatning",
-    level: 3,
-    description: "Tekster og kampagner, der inspirerer folk til at drømme, opleve og engagere sig.",
-    needsDescription: "Tekster og kampagner, der inspirerer folk til at drømme, opleve og engagere sig.",
-    contribution: "Kreativ idéudvikling, storytelling og erfaring med at skrive til mange forskellige platforme. Jeg formidler indhold, som både informerer og skaber følelser."
-  },
-  {
-    name: "Visuel Kommunikation",
-    level: 4,
-    description: "Visuel kommunikation er min måde at fortælle historier på, når ord ikke er nok. Jeg arbejder med billeder, grafik og video, så budskabet bliver levende og får personlighed – og jeg elsker at forfine de små detaljer, der gør forskellen.",
-    needsDescription: "Et iøjnefaldende visuelt univers, der får folk til at stoppe op og mærke rejselysten.",
-    contribution: "Kreativ billedredigering, grafiske løsninger og videoer, der understøtter brandet og gør indholdet mindeværdigt."
-  },
-  {
-    name: "Eksperimenterende Idéudvikling",
-    level: 4,
-    description: "Jeg trives allerbedst, når jeg kan tænke ud af boksen og afprøve nye idéer. Jeg bliver motiveret af at eksperimentere og se, hvor kreative koncepter kan føre hen – og jeg har altid øje for, hvordan data og trends kan omsættes til innovation.",
-    needsDescription: "Friske kampagner og indhold, der tør skille sig ud og invitere til nye oplevelser.",
-    contribution: "Energi og nysgerrighed i idéudvikling, erfaring med både analyse og kreativ konceptudvikling, samt evnen til at omsætte indsigter til konkrete løsninger."
-  },
-  {
-    name: "Struktur & Selvstændighed",
-    level: 5,
-    description: "Jeg sætter pris på struktur og elsker at have styr på processer og deadlines. Med overblik og selvstændighed kan jeg få selv komplekse projekter til at glide – og jeg har det bedst, når jeg får lov til at tage ansvar og se ting lykkes.",
-    needsDescription: "En sikker hånd på projektstyring og en person, der holder overblikket – også når der sker meget på én gang.",
-    contribution: "Stærk planlægning, selvstændig opgaveløsning og evnen til at skabe ro og retning, så projekterne kommer i mål."
-  },
-  {
-    name: "SoMe & Engagement",
-    level: 3,
-    description: "Jeg har et naturligt blik for, hvad der rører sig på sociale medier, og jeg elsker at være med til at skabe dialog og engagement. Det motiverer mig at se indhold leve og få respons fra følgere – og jeg tror på, at ægte interaktion skaber stærke relationer.",
-    needsDescription: "Indhold, der får folk til at deltage, kommentere og dele – og SOME-strategier, der bygger fællesskab.",
-    contribution: "Erfaring med SOME-planlægning, community management og indhold, der skaber ægte engagement og nærvær."
-  },
-  {
-    name: "Performance Tracking",
-    level: 4,
-    description: "Jeg er nysgerrig på, hvad der virker – og hvorfor. Jeg bruger data og feedback til at justere og forbedre indhold, og synes det er spændende at se resultaterne af indsatsen sort på hvidt.",
-    needsDescription: "En analytisk tilgang, der sikrer at indsatser og indhold løbende bliver bedre og mere relevante.",
-    contribution: "Løbende måling og analyse, evnen til at finde mønstre i data og lysten til at omsætte indsigter til nye idéer og forbedringer."
-  }
-];
+    var skills = [
+      {
+        name: "Storytelling & Kreativ Tekstforfatning",
+        level: 3,
+        description: "Tekster og kampagner, der inspirerer folk til at drømme, opleve og engagere sig.",
+        needsDescription: "Tekster og kampagner, der inspirerer folk til at drømme, opleve og engagere sig.",
+        contribution: "Kreativ idéudvikling, storytelling og erfaring med at skrive til mange forskellige platforme. Jeg formidler indhold, som både informerer og skaber følelser."
+      },
+      {
+        name: "Visuel Kommunikation",
+        level: 4,
+        description: "Visuel kommunikation er min måde at fortælle historier på, når ord ikke er nok. Jeg arbejder med billeder, grafik og video, så budskabet bliver levende og får personlighed – og jeg elsker at forfine de små detaljer, der gør forskellen.",
+        needsDescription: "Et iøjnefaldende visuelt univers, der får folk til at stoppe op og mærke rejselysten.",
+        contribution: "Kreativ billedredigering, grafiske løsninger og videoer, der understøtter brandet og gør indholdet mindeværdigt."
+      },
+      {
+        name: "Eksperimenterende Idéudvikling",
+        level: 4,
+        description: "Jeg trives allerbedst, når jeg kan tænke ud af boksen og afprøve nye idéer. Jeg bliver motiveret af at eksperimentere og se, hvor kreative koncepter kan føre hen – og jeg har altid øje for, hvordan data og trends kan omsættes til innovation.",
+        needsDescription: "Friske kampagner og indhold, der tør skille sig ud og invitere til nye oplevelser.",
+        contribution: "Energi og nysgerrighed i idéudvikling, erfaring med både analyse og kreativ konceptudvikling, samt evnen til at omsætte indsigter til konkrete løsninger."
+      },
+      {
+        name: "Struktur & Selvstændighed",
+        level: 5,
+        description: "Jeg sætter pris på struktur og elsker at have styr på processer og deadlines. Med overblik og selvstændighed kan jeg få selv komplekse projekter til at glide – og jeg har det bedst, når jeg får lov til at tage ansvar og se ting lykkes.",
+        needsDescription: "En sikker hånd på projektstyring og en person, der holder overblikket – også når der sker meget på én gang.",
+        contribution: "Stærk planlægning, selvstændig opgaveløsning og evnen til at skabe ro og retning, så projekterne kommer i mål."
+      },
+      {
+        name: "SoMe & Engagement",
+        level: 3,
+        description: "Jeg har et naturligt blik for, hvad der rører sig på sociale medier, og jeg elsker at være med til at skabe dialog og engagement. Det motiverer mig at se indhold leve og få respons fra følgere – og jeg tror på, at ægte interaktion skaber stærke relationer.",
+        needsDescription: "Indhold, der får folk til at deltage, kommentere og dele – og SOME-strategier, der bygger fællesskab.",
+        contribution: "Erfaring med SOME-planlægning, community management og indhold, der skaber ægte engagement og nærvær."
+      },
+      {
+        name: "Performance Tracking",
+        level: 4,
+        description: "Jeg er nysgerrig på, hvad der virker – og hvorfor. Jeg bruger data og feedback til at justere og forbedre indhold, og synes det er spændende at se resultaterne af indsatsen sort på hvidt.",
+        needsDescription: "En analytisk tilgang, der sikrer at indsatser og indhold løbende bliver bedre og mere relevante.",
+        contribution: "Løbende måling og analyse, evnen til at finde mønstre i data og lysten til at omsætte indsigter til nye idéer og forbedringer."
+      }
+    ];
     function wrapRadarText(text, maxWidth, fontSize) {
       const words = text.split(" ");
       let line = "";
@@ -1288,7 +1270,7 @@ hr {
       if (skillDetails) {
         skillDetails.innerHTML =
           '<div class="mapping-detail-card">' +
-           '<div class="mapping-detail-title">' + skill.name + 
+           '<div class="mapping-detail-title">' + skill.name +
             ' <span class="mapping-detail-prolevel">(' + skill.level + '/5)</span></div>' +
             '<div class="mapping-detail-desc">' + skill.description + '</div>' +
             '<div class="competency-section"><h4>DanExplore har brug for:</h4><p>' + skill.needsDescription + '</p></div>' +
