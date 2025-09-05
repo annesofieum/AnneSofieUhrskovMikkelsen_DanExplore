@@ -212,57 +212,6 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
-/* OM MIG */
-.om-mig-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 14px;
-  color: #294231;
-}
-.om-mig-desc {
-  text-align: center;
-  font-size: 1.16rem;
-  margin-bottom: 22px;
-  color: #294231;
-  line-height: 1.46;
-}
-.stats-row {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 28px;
-  margin-bottom: 16px;
-  margin-top: 0;
-}
-.stat-card {
-  background: rgba(234,246,250,0.10);
-  border-radius: 18px;
-  box-shadow: 0 1px 8px rgba(33,122,126,0.07);
-  text-align: center;
-  padding: 18px 28px 10px 28px;
-  min-width: 170px;
-  min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.stat-card-bold {
-  font-weight: 700;
-  font-size: 1.45rem;
-  color: #294231;
-  margin-bottom: 3px;
-}
-.stat-card-label {
-  font-size: 1.08rem;
-  color: #294231;
-  opacity: 0.8;
-}
-hr {
-  border: none;
-  border-top: 1px solid #d7e6e0;
-  margin: 18px 0 18px 0;
-}
 .contact-lang-row {
   display: flex;
   justify-content: space-between;
@@ -272,38 +221,25 @@ hr {
 .contact-col, .lang-col {
   flex: 1 1 0;
 }
-
 .contact-col {
   min-width: 240px;
   max-width: 340px;
   padding-right: 20px;
 }
-
 .contact-item, .address-row {
+  display: flex;
+  align-items: baseline;
   margin-bottom: 10px;
   line-height: 1.5;
   flex-wrap: wrap;
 }
-
 .contact-label {
   min-width: 90px;
   display: inline-block;
 }
-
-@media (max-width: 700px) {
-  .contact-col {
-    max-width: 100vw;
-    min-width: 0;
-    padding-right: 0;
-  }
-  .contact-item, .address-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .contact-label, .contact-value {
-    display: block;
-    min-width: 0;
-  }
+.contact-value {
+  display: inline;
+  margin-left: 4px;
 }
 .contact-title, .lang-title {
   font-size: 1.28rem;
@@ -311,32 +247,39 @@ hr {
   margin-bottom: 10px;
   color: #294231;
 }
-.contact-item, .lang-item {
+.lang-item {
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
   align-items: baseline;
   font-size: 1.08rem;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
-.contact-label, .lang-label {
+.lang-label {
   font-weight: 600;
   min-width: 70px;
 }
-.contact-value, .lang-value {
+.lang-value {
   color: #294231;
 }
 .address-row {
   margin-top: 5px;
 }
-.lang-item {
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-hr {
-  border: none;
-  border-top: 1.5px solid var(--soft-green);
-  margin: 2vw 0 2vw 0;
-  width: 100%;
+
+/* Responsive: do NOT stack label/value on mobile */
+@media (max-width: 700px) {
+  .contact-col {
+    max-width: 100vw;
+    min-width: 0;
+    padding-right: 0;
+  }
+  .contact-item, .address-row {
+    flex-direction: row;
+    align-items: baseline;
+  }
+  .contact-label, .contact-value {
+    display: inline;
+    min-width: 0;
+  }
 }
 /* KOMPETENCER/MAPPING */
 .mapping-headline {
